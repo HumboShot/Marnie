@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marnie.Layout.TrainSearch">
+
+    <StackLayout>
+        <Entry x:Name="FromBox"/>
+        <Entry x:Name="Destination"/>
+        <DatePicker x:Name="DatePicker"/>
+        <TimePicker x:Name="TimePicker" Time="08:08"/>
+        <Button x:Name="SearchForTrainBtn" Text="Søg"/>
+    </StackLayout>
+</ContentPage>
