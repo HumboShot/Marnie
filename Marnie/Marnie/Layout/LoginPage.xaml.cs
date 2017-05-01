@@ -3,27 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Marnie.Layout;
 using Newtonsoft.Json;
 using RestSharp;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Marnie
+namespace Marnie.Layout
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class StartPage : ContentPage
+    public partial class LoginPage : ContentPage
     {
-        public StartPage()
+        public LoginPage()
         {
             InitializeComponent();
         }
 
-       
-
-        private void SignUpBtn_OnClicked(object sender, EventArgs e)
+        private async void SignUpBtn_OnClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SignUp());
+            await Navigation.PushAsync(new SignUpPage());
         }
 
         private void LogInBtn_OnClicked(object sender, EventArgs e)
@@ -35,7 +32,7 @@ namespace Marnie
             else
             {
                 DisplayAlert("Login failed", "Please try again or Sign Up", "OK");
-                Navigation.PushModalAsync(new StartPage());
+                Navigation.PushModalAsync(new LoginPage());
             }
         }
 
@@ -62,7 +59,7 @@ namespace Marnie
                 Application.Current.Properties["id_token"] = token.id_token;
                 Application.Current.Properties["access_token"] = token.access_token;
                 GetUserData(token.id_token);
-                
+
                 DisplayAlert("Login Succsessfull", "", "OK");
                 return true;
             }
@@ -87,7 +84,7 @@ namespace Marnie
 
             // Once the call executes, we capture the user data in the
             // `Application.Current` namespace which is globally available in Xamarin
-           // Application.Current.Properties["email"] = user.email;
+            // Application.Current.Properties["email"] = user.email;
             //Application.Current.Properties["picture"] = user.picture;
 
             // Finally, we navigate the user the the Orders page
@@ -107,5 +104,6 @@ namespace Marnie
             public string picture { get; set; }
             public string email { get; set; }
         }
+
     }
 }

@@ -28,7 +28,7 @@ namespace Marnie.Layout
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new StartPage());
+            await Navigation.PushAsync(new LoginPage());
         }
     }
 }
