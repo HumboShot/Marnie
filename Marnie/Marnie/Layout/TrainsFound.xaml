@@ -4,6 +4,7 @@
              x:Class="Marnie.Layout.TrainsFound">
     
     <StackLayout>
+        <Label/>
         <ListView/>
     </StackLayout>
 </ContentPage>
