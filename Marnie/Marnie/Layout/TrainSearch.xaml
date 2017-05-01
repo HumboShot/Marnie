@@ -3,11 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Marnie.Layout.TrainSearch">
 
-    <StackLayout>
-        <Entry x:Name="FromBox"/>
-        <Entry x:Name="Destination"/>
-        <DatePicker x:Name="DatePicker"/>
-        <TimePicker x:Name="TimePicker" Time="08:08"/>
+    <StackLayout Margin="20,20,20,20" BackgroundColor="Red">
+        <StackLayout Padding="0,0,0,10" BackgroundColor="Green">
+            <Label Text="Fra"/>
+            <Entry x:Name="FromBox"/>
+        </StackLayout>
+        <StackLayout Padding="0,0,0,10" BackgroundColor="Yellow">
+            <Label Text="Til"/>
+            <Entry x:Name="Destination"/>
+        </StackLayout>
+        <StackLayout Padding="0,0,0,10" BackgroundColor="Blue">
+            <DatePicker x:Name="DatePicker"/>
+            <TimePicker x:Name="TimePicker" Time="08:08"/>
+        </StackLayout>
         <Button x:Name="SearchForTrainBtn" Text="Søg" Clicked="SearchForTrainBtn_OnClicked"/>
     </StackLayout>
 </ContentPage>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Marnie.Layout;
 using Xamarin.Forms;
 
 namespace Marnie
@@ -13,7 +13,7 @@ namespace Marnie
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new TrainSearch());
         }
 
         protected override void OnStart()

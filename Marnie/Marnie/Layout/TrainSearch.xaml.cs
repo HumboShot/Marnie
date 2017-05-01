@@ -16,6 +16,8 @@ namespace Marnie.Layout
         {
             InitializeComponent();
             TimePicker.Time = DateTime.Now.TimeOfDay;
+            //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1]);
+            NavigationPage.SetHasBackButton(this, false);
         }
 
 
