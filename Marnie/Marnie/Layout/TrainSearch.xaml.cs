@@ -25,5 +25,10 @@ namespace Marnie.Layout
         {
             await Navigation.PushAsync(new TrainsFound());
         }
+
+        private async void Button_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new LoginPage());
+        }
     }
 }

@@ -1,21 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Marnie.Layout.TrainSearch">
+             x:Class="Marnie.Layout.TrainSearch"
+             BackgroundColor="#4aa6ff"
+             Title="Find dit tog">
 
-    <StackLayout Margin="20,20,20,20" BackgroundColor="Red">
-        <StackLayout Padding="0,0,0,10" BackgroundColor="Green">
-            <Label Text="Fra"/>
-            <Entry x:Name="FromBox"/>
+    <StackLayout>
+        <StackLayout Padding="20,5,20,0">
+            <StackLayout Padding="0,0,0,10">
+                <Label Text="Fra" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                <Entry x:Name="FromBox" TextColor="White"/>
+            </StackLayout>
+            <StackLayout Padding="0,0,0,10">
+                <Label Text="Til" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                <Entry x:Name="Destination" TextColor="White"/>
+            </StackLayout>
+            <StackLayout Padding="0,0,0,10">
+                <DatePicker x:Name="DatePicker" TextColor="White"/>
+                <TimePicker x:Name="TimePicker" TextColor="White"/>
+            </StackLayout>
+            <Button x:Name="SearchForTrainBtn" Text="Søg" Clicked="SearchForTrainBtn_OnClicked" BorderRadius="5" />
         </StackLayout>
-        <StackLayout Padding="0,0,0,10" BackgroundColor="Yellow">
-            <Label Text="Til"/>
-            <Entry x:Name="Destination"/>
-        </StackLayout>
-        <StackLayout Padding="0,0,0,10" BackgroundColor="Blue">
-            <DatePicker x:Name="DatePicker"/>
-            <TimePicker x:Name="TimePicker" Time="08:08"/>
-        </StackLayout>
-        <Button x:Name="SearchForTrainBtn" Text="Søg" Clicked="SearchForTrainBtn_OnClicked"/>
+        <Button Text="TEST" Clicked="Button_OnClicked"/>
     </StackLayout>
 </ContentPage>

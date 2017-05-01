@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json;
+using RestSharp;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using RestSharp;
-using Newtonsoft.Json;
 
-namespace Marnie
+namespace Marnie.Layout
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SignUp : ContentPage
+    public partial class SignUpPage : ContentPage
     {
-        public SignUp()
+        public SignUpPage()
         {
             InitializeComponent();
         }
@@ -29,7 +28,7 @@ namespace Marnie
             {
                 DisplayAlert("ConfirmPasword don't match Password ", "Please try again", "Ok");
             }
-            
+
         }
 
         public void Signup(string username, string password)
@@ -67,3 +66,4 @@ namespace Marnie
         }
     }
 }
+
