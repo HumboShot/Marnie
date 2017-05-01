@@ -43,9 +43,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Layout\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Layout\TrainPeople.xaml.cs">
       <DependentUpon>TrainPeople.xaml</DependentUpon>
     </Compile>
@@ -54,9 +51,6 @@
     </Compile>
     <Compile Include="Layout\TrainsFound.xaml.cs">
       <DependentUpon>TrainsFound.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Date.cs" />
     <Compile Include="Model\Person.cs" />
@@ -70,10 +64,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
