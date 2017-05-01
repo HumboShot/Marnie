@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marnie.SignUp">
+    <StackLayout Padding = '30' Spacing = '10'>
+        <Label Text="Sign Up to Marnie" FontSize="Large" HorizontalOptions="Center"></Label>
+        <Entry x:Name="Email" Placeholder="Enter your email"> </Entry>
+        <Entry x:Name="Password" Placeholder="Enter password" IsEnabled="True"></Entry>
+        <Entry x:Name="ConfirmPassword" Placeholder="Confirm password" IsPassword="True"></Entry>
+        <Button x:Name="SignUpBtn" Text="sign Up" Clicked="SignUpBtn_OnClicked"></Button>
+
+
+    </StackLayout>
+</ContentPage>
