@@ -18,9 +18,14 @@ namespace Marnie.Layout
             InitializeComponent();
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
         private async void SignUpBtn_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SignUpPage());
+            await Navigation.PushModalAsync(new SignUpPage());
         }
 
         private void LogInBtn_OnClicked(object sender, EventArgs e)
