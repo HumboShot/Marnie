@@ -8,6 +8,6 @@
         <Entry x:Name="Destination"/>
         <DatePicker x:Name="DatePicker"/>
         <TimePicker x:Name="TimePicker" Time="08:08"/>
-        <Button x:Name="SearchForTrainBtn" Text="Søg"/>
+        <Button x:Name="SearchForTrainBtn" Text="Søg" Clicked="SearchForTrainBtn_OnClicked"/>
     </StackLayout>
 </ContentPage>

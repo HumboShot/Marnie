@@ -17,5 +17,11 @@ namespace Marnie.Layout
             InitializeComponent();
             TimePicker.Time = DateTime.Now.TimeOfDay;
         }
+
+
+        private async void SearchForTrainBtn_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TrainsFound());
+        }
     }
 }
