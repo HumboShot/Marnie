@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Marnie.Model
 {
-    class Person
+    public class Person
     {
-        public int ID;
-        public string Name;
-        public DateTime Birthday;
-        public string Sex;
-        public string ProfilPicture;
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public DateTime Birthday { get; set; }
+        public string Sex { get; set; }
+        public string ProfilPicture { get; set; }
 
         public Person(int iD, string name, DateTime birthday, string sex, string profilPicture)
         {

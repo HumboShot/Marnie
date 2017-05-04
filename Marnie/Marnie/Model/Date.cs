@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Marnie.Model
 {
-    class Date
-    {
-        public int ID;
-        public int TrainID;
-        public string StartLocation;
-        public string Distination;
+    public class Date
+    {       
+        public int ID { get; set; }
+        public int TrainID { get; set; }
+        public string StartLocation { get; set; }
+        public string Distination { get; set; }
 
         public Date(int iD, int trainID, string startLocation, string distination)
         {

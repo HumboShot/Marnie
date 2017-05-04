@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Marnie.Model
 {
-    class Post
+    public class Post
     {
-        public int ID;
-        public int TrainId;
-        public string StartLocation;
-        public string Distination;
-        public int PersonId;
-        public DateTime TravelDate;
-        public int Status;
+        public int ID { get; set; }
+        public int TrainId { get; set; }
+        public string StartLocation { get; set; }
+        public string Distination { get; set; }
+        public int PersonId { get; set; }
+        public DateTime TravelDate { get; set; }
+        public int Status { get; set; }
 
         public Post(int iD, int trainId, string startLocation, string distination, int personId, DateTime travelDate, int status)
         {
