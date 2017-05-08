@@ -58,11 +58,14 @@
     <Compile Include="Layout\TrainsFound.xaml.cs">
       <DependentUpon>TrainsFound.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Jorney.cs" />
+    <Compile Include="Model\Route.cs" />
+    <Compile Include="Model\Station.cs" />
+    <Compile Include="Model\Stop.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Model\Date.cs" />
     <Compile Include="Model\LoginToken.cs" />
     <Compile Include="Model\Person.cs" />
-    <Compile Include="Model\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

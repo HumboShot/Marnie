@@ -111,7 +111,7 @@ namespace Marnie
                 // newPerson.AuthId = p.AuthId;
                 newPerson.Name = name;
                 newPerson.Birthday = birthdate;
-                newPerson.ProfilPicture = picturePath;
+                newPerson.ProfilePicture = picturePath;                
                 newPerson.Gender = gender;
 
                 //JsonConvert.SerializeObject(newPerson);
