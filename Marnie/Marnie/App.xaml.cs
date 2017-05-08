@@ -12,8 +12,17 @@ namespace Marnie
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new TrainSearch());
+            if (Application.Current.Properties.ContainsKey("isLoggetIn") &&
+                (bool) Application.Current.Properties["isLoggetIn"])
+            {
+                MainPage = new NavigationPage(new TrainSearch());
+                
+            }
+            else
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            
         }
 
         protected override void OnStart()

@@ -3,10 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Marnie.Layout.SignUpPage">
     <StackLayout Padding = '30' Spacing = '10'>
-        <Label Text="Sign Up to Marnie" FontSize="Large" HorizontalOptions="Center"></Label>
-        <Entry x:Name="Email" Placeholder="Enter your email"></Entry>
-        <Entry x:Name="Password" Placeholder="Enter password" IsEnabled="True"></Entry>
-        <Entry x:Name="ConfirmPassword" Placeholder="Confirm password" IsPassword="True"></Entry>
-        <Button x:Name="SignUpBtn" Text="sign Up" Clicked="SignUpBtn_OnClicked"></Button>
+        <Label Text="Sign Up to Marnie" FontSize="Large" HorizontalOptions="Center"/>
+        <Entry x:Name="Name" Placeholder="Your name"/>
+
+        <Label x:Name="Birthday" Text="Your birthday"/>
+        <DatePicker x:Name="Birthdate" TextColor="White"/>
+
+        <Picker x:Name="Gender" Title="Select your gender">
+            <Picker.Items>
+                <x:String>Male</x:String>
+                <x:String>Female</x:String>
+                <x:String>Other</x:String>
+            </Picker.Items>
+        </Picker>
+        <Entry x:Name="Picture" Placeholder="Profile picture path" Text="hej"></Entry>
+        <Entry x:Name="Email" Placeholder="Enter your email"/>
+
+        <Entry x:Name="Password" Placeholder="Enter password" IsEnabled="True"/>
+        <Entry x:Name="ConfirmPassword" Placeholder="Confirm password" IsPassword="True"/>
+
+        <Button x:Name="SignUpBtn" Text="sign Up" Clicked="SignUpBtn_OnClicked"/>
     </StackLayout>
 </ContentPage>

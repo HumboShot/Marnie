@@ -9,5 +9,6 @@
         <Entry x:Name="Password" Placeholder="Enter password" IsEnabled="True"/>
         <Button x:Name="LogInBtn" Text="Login" Clicked="LogInBtn_OnClicked"/>
         <Button x:Name="SignUpBtn" Text="Sign Up" Clicked="SignUpBtn_OnClicked"/>
+      
     </StackLayout>
 </ContentPage>

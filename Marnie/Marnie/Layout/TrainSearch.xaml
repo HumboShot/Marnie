@@ -22,5 +22,6 @@
             <Button x:Name="SearchForTrainBtn" Text="Søg" Clicked="SearchForTrainBtn_OnClicked" BorderRadius="5" />
         </StackLayout>
         <Button Text="TEST" Clicked="Button_OnClicked"/>
+        <Label x:Name="LoginStatus" Text=""></Label>
     </StackLayout>
 </ContentPage>

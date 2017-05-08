@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Marnie.Model
 {
-    class Date
+    public class Date
     {
         public int ID;
         public int TrainID;
