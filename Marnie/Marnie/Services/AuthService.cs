@@ -108,21 +108,14 @@ namespace Marnie
             {
                 //Create new Person with UserId
                 var newPerson = new Person(p.AuthId);
-                // newPerson.AuthId = p.AuthId;
+              
                 newPerson.Name = name;
                 newPerson.Birthday = birthdate;
                 newPerson.ProfilePicture = picturePath;                
                 newPerson.Gender = gender;
-
-                //JsonConvert.SerializeObject(newPerson);
-
-                SavePersonToDb(newPerson);
-
-
-                //todo Create new user in our database with provided user_id
-                //redirect to  a new screen with the rest of the user info and save button and 
-                //update the user insted of display alert '
-
+                
+                //var saveToDb =  SavePersonToDb(newPerson);
+              
                 status = true;//account created
                 //Perform login
                 if (!Login(username, password))
@@ -133,17 +126,26 @@ namespace Marnie
             return status;// account created and login successful
         }
 
-        private void SavePersonToDb(Person newPerson)
+        private bool SavePersonToDb(Person newPerson)
         {
             var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
             var request = new RestRequest("Person", Method.POST);
             var json = request.JsonSerializer.Serialize(newPerson);
          
             request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
-            //request.AddHeader("Content-type", "application/json");
-            //request.AddParameter("Person", newPerson);
+          
             
             IRestResponse response = marnieClient.Execute(request);
+            //get responce status code, then return true if succsessfull (between 200 and 299) else return false
+            var num = (int) response.StatusCode;
+            if (num >= 200 && num <= 299)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
        
@@ -157,20 +159,8 @@ namespace Marnie
         {
             [JsonProperty("_id")]
             public string AuthId { get; set; }
-
-            public string Name { get; set; }
-
-            public DateTime Birthday { get; set; }
-
-            public string Gender { get; set; }
-
-            public string ProfilPicture { get; set; }
+            
         }
-
-        private class RequestObject
-        {
-            public Person person { get; set; }
-        }
-
+        
     }
 }
