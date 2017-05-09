@@ -58,10 +58,15 @@ namespace Marnie.Layout
             longitude = longitude.Replace(",", ".");
 
             var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
-            var request = new RestRequest("Station", Method.GET);
-           
+            var request = new RestRequest("Station", Method.GET);           
             request.AddParameter("latitude", latitude);
             request.AddParameter("longitude", longitude);
+
+            //can change and use station object to send coordinates to api?
+            //var station = new Station("Gps coordinate", _position.Latitude, _position.Longitude);
+            //var json = request.JsonSerializer.Serialize(station);
+            //request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+
             IRestResponse response = marnieClient.Execute(request);
             var num = (int)response.StatusCode;
             if (num >= 200 && num <= 299)
