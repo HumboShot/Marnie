@@ -20,6 +20,7 @@
                 <TimePicker x:Name="TimePicker" TextColor="White"/>
             </StackLayout>
             <Button x:Name="SearchForTrainBtn" Text="Søg" Clicked="SearchForTrainBtn_OnClicked" BorderRadius="5" />
+            <Button x:Name="NearestStationBtn" Text="Find nærmste station" Clicked="NearestStationBtn_OnClicked"/>
         </StackLayout>
         <Button Text="TEST" Clicked="Button_OnClicked"/>
     </StackLayout>
