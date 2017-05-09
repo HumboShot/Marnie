@@ -58,6 +58,7 @@
     <Compile Include="Layout\TrainsFound.xaml.cs">
       <DependentUpon>TrainsFound.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\GenerateData.cs" />
     <Compile Include="Model\Jorney.cs" />
     <Compile Include="Model\Route.cs" />
     <Compile Include="Model\Station.cs" />
