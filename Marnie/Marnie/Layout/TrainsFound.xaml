@@ -1,10 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Marnie.Layout.TrainsFound">
-    
-    <StackLayout>
-        <Label/>
-        <ListView/>
-    </StackLayout>
+             x:Class="Marnie.Layout.TrainsFound"
+             Title="TrainsFound">
+
+    <StackLayout Padding="5" Spacing="5">
+        <Button Text="Use Selected Route" x:Name="btn_useRoute" Clicked="Button_OnRouteSelected"/>
+        <ListView x:Name="routesListView"  ItemSelected="OnRouteSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding Name}"/>
+                            <Label Text="{Binding Id}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </StackLayout>
 </ContentPage>

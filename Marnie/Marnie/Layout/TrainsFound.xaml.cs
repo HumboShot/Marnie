@@ -3,18 +3,64 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Marnie.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Marnie.Layout
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TrainsFound : ContentPage
     {
-        public TrainsFound()
+        private ObservableCollection<Route> _obsList;
+        private List<Route> _routeList = new List<Route>();
+        private Route _selectedRoute;
+        private Jorney _jorney = new Jorney();        
+
+        public TrainsFound(List<Route> routeList, Jorney jorney)
         {
+            _routeList = routeList;
+            _jorney = jorney;
             InitializeComponent();
+            SetObservableCollection();
+        }
+
+        private void SetObservableCollection()
+        {
+            _obsList = new ObservableCollection<Route>(_routeList);
+            routesListView.ItemsSource = _obsList;
+            Debug.WriteLine("Loaded " + _obsList.Count + " Routes");
+        }
+
+        private void OnRouteSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (routesListView.SelectedItem == null)
+                return;
+            _selectedRoute = e.SelectedItem as Route;
+            routesListView.SelectedItem = null;
+        }
+
+        private async void Button_OnRouteSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            _jorney.StartTime = DateTime.Today + _selectedRoute.Stops.Single(stop => stop.Station.Name.Equals(_jorney.StartLocation)).DepartureTime;
+
+            _jorney.EndTime = DateTime.Today + _selectedRoute.Stops.Single(stop => stop.Station.Name.Equals(_jorney.Destination)).ArrivalTime;
+            _jorney.Route = _selectedRoute;
+            _jorney.RouteId = _selectedRoute.Id;
+            _jorney.Status = 0;            
+            //_jorney.PersonId = Need to be able to get this somewhere
+
+            //Get jorneyList from Api and if succesfull push next Page with it.
+
+            var trainPeoplePage = new TrainPeople(new List<Jorney>());
+            await Navigation.PushAsync(trainPeoplePage);
+        }
+
+        private void notDone_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }
