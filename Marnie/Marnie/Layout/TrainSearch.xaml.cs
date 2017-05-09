@@ -7,12 +7,18 @@ using System.Threading.Tasks;
 using Plugin.Geolocator;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using RestSharp;
+using Marnie.Model;
+using Newtonsoft.Json;
+using Plugin.Geolocator.Abstractions;
 
 namespace Marnie.Layout
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TrainSearch : ContentPage
     {
+        private Position _position;
+
         public TrainSearch()
         {
             InitializeComponent();
@@ -43,20 +49,25 @@ namespace Marnie.Layout
             await Navigation.PushModalAsync(new LoginPage());
         }
 
-        private  async void NearestStationBtn_OnClicked(object sender, EventArgs e)
+        private async void NearestStationBtn_OnClicked(object sender, EventArgs e)
         {
-            var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 50;
+            await LocationCurrent();
+            string latitude = _position.Latitude.ToString();
+            latitude = latitude.Replace(",", ".");
+            string longitude = _position.Longitude.ToString();
+            longitude = longitude.Replace(",", ".");
 
-            var position = await locator.GetPositionAsync(10000);
-            if (position == null)
-                return;
-            var lat = position.Latitude;
-            var lon = position.Longitude;
-            var ls = new LocationService();
-            var station = ls.GetNearestStation(lat, lon);
-            FromBox.Text = station.Name;
+            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var request = new RestRequest("Station", Method.GET);
+            //"Station?latitude=57.038477&longitude=9.8889"
+            //"Station?latitude="+latitude+"&longitude="+longitude
 
+            request.AddParameter("latitude", latitude);
+            request.AddParameter("longitude", longitude);
+            IRestResponse response = marnieClient.Execute(request);
+            Debug.WriteLine(response.StatusCode);
+            Station station = JsonConvert.DeserializeObject<Station>(response.Content);
+            Debug.WriteLine(response.StatusCode);
         }
 
         private async Task LocationCurrent()
@@ -66,13 +77,13 @@ namespace Marnie.Layout
                 var locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 50;
 
-                var position = await locator.GetPositionAsync(10000);
-                if (position == null)
+                _position = await locator.GetPositionAsync(10000);
+                if (_position == null)
                     return;
 
-                Debug.WriteLine("Position Status: {0}", position.Timestamp);
-                Debug.WriteLine("Position Latitude: {0}", position.Latitude);
-                Debug.WriteLine("Position Longitude: {0}", position.Longitude);
+                Debug.WriteLine("Position Status: {0}", _position.Timestamp);
+                Debug.WriteLine("Position Latitude: {0}", _position.Latitude);
+                Debug.WriteLine("Position Longitude: {0}", _position.Longitude);
             }
             catch (Exception ex)
             {
