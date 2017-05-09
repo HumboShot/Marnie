@@ -43,9 +43,20 @@ namespace Marnie.Layout
             await Navigation.PushModalAsync(new LoginPage());
         }
 
-        private  void NearestStationBtn_OnClicked(object sender, EventArgs e)
+        private  async void NearestStationBtn_OnClicked(object sender, EventArgs e)
         {
-            
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 50;
+
+            var position = await locator.GetPositionAsync(10000);
+            if (position == null)
+                return;
+            var lat = position.Latitude;
+            var lon = position.Longitude;
+            var ls = new LocationService();
+            var station = ls.GetNearestStation(lat, lon);
+            FromBox.Text = station.Name;
+
         }
 
         private async Task LocationCurrent()
