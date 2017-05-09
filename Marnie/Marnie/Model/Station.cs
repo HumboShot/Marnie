@@ -7,6 +7,13 @@
 
         }
 
+        public Station(string name, double latitude, double longitude)
+        {
+            Name = name;
+            Latitude = latitude;
+            Longitude = longitude;
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public double Latitude { get; set; }
