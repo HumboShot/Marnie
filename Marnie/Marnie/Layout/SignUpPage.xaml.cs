@@ -29,17 +29,17 @@ namespace Marnie.Layout
                 if (service.Signup(Name.Text, Birthdate.Date, Picture.Text, Gender.SelectedItem.ToString(), Email.Text, Password.Text))
                 {
                     
-                    DisplayAlert("Account created successfuly", "You are logget in", "OK");
+                    await DisplayAlert("Account created successfuly", "You are logget in", "OK");
                     await Navigation.PushModalAsync(new TrainSearch());
                 }
                 else
                 {
-                    DisplayAlert("An Error has occured", "Please try again", "OK");
+                    await DisplayAlert("An Error has occured", "Please try again", "OK");
                 }
             }
             else
             {
-                DisplayAlert("ConfirmPasword don't match Password ", "Please try again", "Ok");
+                await DisplayAlert("ConfirmPasword don't match Password ", "Please try again", "Ok");
             }
 
         }

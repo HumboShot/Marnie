@@ -34,7 +34,7 @@ namespace Marnie.Layout
             else
             {
                 LoginStatus.Text = "You are not logget in";
-                
+
             }
         }
 
@@ -59,15 +59,24 @@ namespace Marnie.Layout
 
             var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
             var request = new RestRequest("Station", Method.GET);
-            //"Station?latitude=57.038477&longitude=9.8889"
-            //"Station?latitude="+latitude+"&longitude="+longitude
-
+           
             request.AddParameter("latitude", latitude);
             request.AddParameter("longitude", longitude);
             IRestResponse response = marnieClient.Execute(request);
-            Debug.WriteLine(response.StatusCode);
-            Station station = JsonConvert.DeserializeObject<Station>(response.Content);
-            Debug.WriteLine(response.StatusCode);
+            var num = (int)response.StatusCode;
+            if (num >= 200 && num <= 299)
+            {
+                Debug.WriteLine(response.StatusCode);
+                Station station = JsonConvert.DeserializeObject<Station>(response.Content);
+                FromBox.Text = station.Name;
+            }
+            else
+            {
+                await DisplayAlert(response.StatusCode.ToString(), "Something went wrong", "OK");
+            }
+           
+            
+            
         }
 
         private async Task LocationCurrent()
