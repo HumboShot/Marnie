@@ -19,6 +19,17 @@ namespace Marnie.Layout
             TimePicker.Time = DateTime.Now.TimeOfDay;
             //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1]);
             NavigationPage.SetHasBackButton(this, false);
+            if (Application.Current.Properties.ContainsKey("isLoggetIn") &&
+                (bool)Application.Current.Properties["isLoggetIn"])
+            {
+                LoginStatus.Text = "You are logget in";
+
+            }
+            else
+            {
+                LoginStatus.Text = "You are not logget in";
+                
+            }
         }
 
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Marnie.Layout;
 using Xamarin.Forms;
+using Marnie.Model;
 
 namespace Marnie
 {
@@ -12,8 +13,21 @@ namespace Marnie
         public App()
         {
             InitializeComponent();
+            //Generate some Data, just for us
+            //new GenerateData();
 
-            MainPage = new NavigationPage(new TrainSearch());
+            //Standard Tasks
+            if (Application.Current.Properties.ContainsKey("isLoggetIn") &&
+                (bool) Application.Current.Properties["isLoggetIn"])
+            {
+                MainPage = new NavigationPage(new TrainSearch());
+                
+            }
+            else
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            
         }
 
         protected override void OnStart()

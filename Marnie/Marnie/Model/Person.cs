@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Marnie.Model
 {
+
     public class Person
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
+        public string AuthId { get; set; }
         public string Name { get; set; }
         public DateTime Birthday { get; set; }
-        public string Sex { get; set; }
-        public string ProfilPicture { get; set; }
+        public string Gender { get; set; }
+        public string ProfilePicture { get; set; }        
+        public ICollection<Jorney> Jorneys { get; set; } = new List<Jorney>();        
+        public ICollection<Date> Dates { get; set; } = new List<Date>();
 
-        public Person(int iD, string name, DateTime birthday, string sex, string profilPicture)
+        public Person(string auth_id)
         {
-            ID = iD;
-            Name = name;
-            Birthday = birthday;
-            Sex = sex;
-            ProfilPicture = profilPicture;
+            AuthId = auth_id;
+        }
+
+        public Person()
+        {
+
         }
     }
 }
+

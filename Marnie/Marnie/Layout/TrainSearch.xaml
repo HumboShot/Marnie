@@ -23,5 +23,6 @@
             <Button x:Name="NearestStationBtn" Text="Find nærmste station" Clicked="NearestStationBtn_OnClicked"/>
         </StackLayout>
         <Button Text="TEST" Clicked="Button_OnClicked"/>
+        <Label x:Name="LoginStatus" Text=""></Label>
     </StackLayout>
 </ContentPage>
