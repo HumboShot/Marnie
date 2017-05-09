@@ -10,7 +10,9 @@ using RestSharp;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Net;
+using Android.OS;
 using Org.Apache.Http.Client.Params;
+using Debug = System.Diagnostics.Debug;
 
 namespace Marnie
 {
@@ -65,6 +67,11 @@ namespace Marnie
                 }//end if
 
                 SaveChanges(); //save properties
+                IdToken idToken = new IdToken();
+                idToken.id_token = Application.Current.Properties["id_token"] as string;
+                var authId = GetUserIdFromAuth(idToken);
+                //TODO make api to get person by auth id
+               // var person =  GetPersonByAuthId(authId);
 
                 return true;
             }
@@ -108,14 +115,14 @@ namespace Marnie
             {
                 //Create new Person with UserId
                 var newPerson = new Person(p.AuthId);
-              
+
                 newPerson.Name = name;
                 newPerson.Birthday = birthdate;
-                newPerson.ProfilePicture = picturePath;                
+                newPerson.ProfilePicture = picturePath;
                 newPerson.Gender = gender;
-                
-                //var saveToDb =  SavePersonToDb(newPerson);
-              
+                //todo Add check if Person is saved to db successfully
+                var saveToDb = SavePersonToDb(newPerson);
+
                 status = true;//account created
                 //Perform login
                 if (!Login(username, password))
@@ -131,13 +138,13 @@ namespace Marnie
             var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
             var request = new RestRequest("Person", Method.POST);
             var json = request.JsonSerializer.Serialize(newPerson);
-         
+
             request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
-          
-            
+
+
             IRestResponse response = marnieClient.Execute(request);
             //get responce status code, then return true if succsessfull (between 200 and 299) else return false
-            var num = (int) response.StatusCode;
+            var num = (int)response.StatusCode;
             if (num >= 200 && num <= 299)
             {
                 return true;
@@ -148,7 +155,26 @@ namespace Marnie
             }
         }
 
-       
+        public String GetUserIdFromAuth(IdToken idToken)
+        {
+            var client = new RestClient("https://olek.eu.auth0.com");
+            var request = new RestRequest("tokeninfo", Method.POST);
+
+            
+            var json = request.JsonSerializer.Serialize(idToken);
+            request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+
+            IRestResponse response = client.Execute(request);
+            
+            UserId userId = JsonConvert.DeserializeObject<UserId>(response.Content);
+
+            Debug.WriteLine("user_id = " + userId.user_id);
+
+            return userId.user_id.Replace("auth0|", "");
+
+        }
+
+
 
         public async void SaveChanges()
         {
@@ -159,8 +185,19 @@ namespace Marnie
         {
             [JsonProperty("_id")]
             public string AuthId { get; set; }
-            
+
         }
-        
+
+        private class UserId
+        {
+            public string user_id { get; set; }
+
+        }
+        public class IdToken
+        {
+            public string id_token { get; set; }
+
+        }
+
     }
 }
