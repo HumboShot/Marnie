@@ -7,6 +7,8 @@ using Newtonsoft.Json;
 using RestSharp;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Marnie.MultilingualResources;
+
 
 namespace Marnie.Layout
 {
@@ -24,9 +26,12 @@ namespace Marnie.Layout
 
         private async void SignUpBtn_OnClicked(object sender, EventArgs e)
         {
-            if (ConfirmPassword.Text.Equals(Password.Text))
+            var gender = new Picker();
+            gender.Title = AppResources.Gender;
+
+            if (AppResources.ConfirmPassword.Equals(AppResources.Password))
             {
-                if (service.Signup(Name.Text, Birthdate.Date, Picture.Text, Gender.SelectedItem.ToString(), Email.Text, Password.Text))
+                if (service.Signup(AppResources.Name, Birthdate.Date, AppResources.Picture, gender.SelectedItem.ToString(), AppResources.Email, AppResources.Password))
                 {
                     
                     await DisplayAlert("Account created successfuly", "You are logget in", "OK");

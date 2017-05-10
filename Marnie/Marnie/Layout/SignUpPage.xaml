@@ -1,27 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Marnie.Layout.SignUpPage">
+             x:Class="Marnie.Layout.SignUpPage"
+             xmlns:i18n="clr-namespace:Marnie;assembly=Marnie">
+    
     <StackLayout Padding = '30' Spacing = '10'>
-        <Label Text="Sign Up to Marnie" FontSize="Large" HorizontalOptions="Center"/>
-        <Entry x:Name="Name" Placeholder="Your name"/>
+        <Label Text="{i18n:TranslateExtension SignUpLabel}" FontSize="Large" HorizontalOptions="Center"/>
+        <Entry Placeholder="{i18n:TranslateExtension Name}"/>
 
-        <Label x:Name="Birthday" Text="Your birthday"/>
+        <Label Text="{i18n:TranslateExtension Birthday}"/>
         <DatePicker x:Name="Birthdate" TextColor="White"/>
 
-        <Picker x:Name="Gender" Title="Select your gender">
+        <Picker Title="{i18n:TranslateExtension Gender}">
             <Picker.Items>
                 <x:String>Male</x:String>
                 <x:String>Female</x:String>
                 <x:String>Other</x:String>
             </Picker.Items>
         </Picker>
-        <Entry x:Name="Picture" Placeholder="Profile picture path" Text="hej"></Entry>
-        <Entry x:Name="Email" Placeholder="Enter your email"/>
+        <Entry Placeholder="{i18n:TranslateExtension Picture}" Text="hej"></Entry>
+        <Entry Placeholder="{i18n:TranslateExtension Email}"/>
 
-        <Entry x:Name="Password" Placeholder="Enter password" IsEnabled="True"/>
-        <Entry x:Name="ConfirmPassword" Placeholder="Confirm password" IsPassword="True"/>
+        <Entry Placeholder="{i18n:TranslateExtension Password}" IsEnabled="True"/>
+        <Entry Placeholder="{i18n:TranslateExtension Gender}" IsPassword="True"/>
 
-        <Button x:Name="SignUpBtn" Text="sign Up" Clicked="SignUpBtn_OnClicked"/>
+        <Button Text="{i18n:TranslateExtension SignUpBtn}" Clicked="SignUpBtn_OnClicked"/>
     </StackLayout>
 </ContentPage>
+

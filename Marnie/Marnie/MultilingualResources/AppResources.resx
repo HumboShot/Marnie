@@ -117,13 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SearchButton" xml:space="preserve">
-    <value>Search</value>
+  <data name="Birthday" xml:space="preserve">
+    <value>Your birthday</value>
   </data>
-  <data name="SearchFrom" xml:space="preserve">
-    <value>To</value>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
   </data>
-  <data name="SearchTo" xml:space="preserve">
-    <value>From</value>
+  <data name="Email" xml:space="preserve">
+    <value>Enter your email</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Select your gender</value>
+  </data>
+  <data name="LogInBtn" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LogInLabel" xml:space="preserve">
+    <value>Wellcome to Marnie </value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Your name</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Enter your password</value>
+  </data>
+  <data name="Picture" xml:space="preserve">
+    <value>Profile picture path</value>
+  </data>
+  <data name="SignUpBtn" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
+  <data name="SignUpLabel" xml:space="preserve">
+    <value>Sign Up to Marnie</value>
   </data>
 </root>

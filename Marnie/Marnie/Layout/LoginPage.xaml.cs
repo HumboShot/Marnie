@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Marnie.MultilingualResources;
 
 namespace Marnie.Layout
 {
@@ -16,6 +17,7 @@ namespace Marnie.Layout
         private AuthService service = new AuthService();
         public LoginPage()
         {
+
             InitializeComponent();
         }
 
@@ -30,8 +32,8 @@ namespace Marnie.Layout
         }
 
         private void LogInBtn_OnClicked(object sender, EventArgs e)
-        {
-            if (service.Login(Email.Text, Password.Text))
+        {        
+            if (service.Login(AppResources.Email, AppResources.Password))
             {
                 DisplayAlert("Login succcessfull", "", "OK");
                 Navigation.PushModalAsync(new TrainSearch());
@@ -42,7 +44,8 @@ namespace Marnie.Layout
                 Navigation.PushModalAsync(new LoginPage());
             }
         }
-
+        
+        
        
     }
 }
