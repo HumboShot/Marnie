@@ -82,6 +82,14 @@ namespace Marnie
                     {
                         Application.Current.Properties.Add("UserName", person.Name);
                     }
+                    if (Application.Current.Properties.ContainsKey("PersonId"))
+                    {
+                        Application.Current.Properties["PersonId"] = person.Id;
+                    }
+                    else
+                    {
+                        Application.Current.Properties.Add("PersonId", person.Id);
+                    }
                     SaveChanges();
                 }
                 return true;

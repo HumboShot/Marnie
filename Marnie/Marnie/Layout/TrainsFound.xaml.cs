@@ -42,19 +42,21 @@ namespace Marnie.Layout
             routesListView.SelectedItem = null;
         }
 
-        private async void Button_OnRouteSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void Button_OnRouteSelected(object sender, EventArgs eventArgs)
         {
             _jorney.StartTime = DateTime.Today + _selectedRoute.Stops.Single(stop => stop.Station.Name.Equals(_jorney.StartLocation)).DepartureTime;
 
             _jorney.EndTime = DateTime.Today + _selectedRoute.Stops.Single(stop => stop.Station.Name.Equals(_jorney.Destination)).ArrivalTime;
             _jorney.Route = _selectedRoute;
             _jorney.RouteId = _selectedRoute.Id;
-            _jorney.Status = 0;            
+            _jorney.Status = 0;
             //_jorney.PersonId = Need to be able to get this somewhere
+            _jorney.PersonId = (int) Application.Current.Properties["PersonId"];//person id comes as the result of login
 
             //Get jorneyList from Api and if succesfull push next Page with it.
-
-            var trainPeoplePage = new TrainPeople(new List<Jorney>());
+            //we send route id , statrt time and end time as parameters to TrainPeople
+            
+            var trainPeoplePage = new TrainPeople(_jorney.RouteId, _jorney.StartTime, _jorney.EndTime);
             await Navigation.PushAsync(trainPeoplePage);
         }
 

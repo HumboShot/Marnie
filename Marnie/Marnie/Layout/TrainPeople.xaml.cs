@@ -14,13 +14,13 @@ namespace Marnie.Layout
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TrainPeople : ContentPage
     {
-        private List<Jorney> _jorneyList;
+       // private List<Jorney> _jorneyList;
 
-        public TrainPeople(List<Jorney> list)
+        public TrainPeople(int routeId, DateTime start, DateTime stop)
         {
-            _jorneyList = list;
+          
             InitializeComponent();
-            //GetPersonsWithRouteIdAndTime()
+            GetPersonsWithRouteIdAndTime(routeId, start, stop);
 
 
         }
@@ -42,6 +42,16 @@ namespace Marnie.Layout
         private class PersonList
         {
             public List<Person> persons { get; set; }
+        }
+
+        private void OnPersonSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            //todo get selected person's id, your id, routeId and create Date object 
+            // set PersonId1 to your id and PersonId2 to selcted person's id;
+            //set StatusP1 to 1;
+            //set DateStatus to 0.
+            
+
         }
     }
 }
