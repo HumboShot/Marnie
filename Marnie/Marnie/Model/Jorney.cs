@@ -8,6 +8,24 @@ namespace Marnie.Model
 {
     public class Jorney
     {
+        public Jorney(int routeId, int personId, string startLocation, DateTime startTime, string destination, DateTime endTime, int status, Person person, Route route)
+        {
+            RouteId = routeId;
+            PersonId = personId;
+            StartLocation = startLocation;
+            StartTime = startTime;
+            Destination = destination;
+            EndTime = endTime;
+            Status = status;
+            Person = person;
+            Route = route;
+        }
+
+        public Jorney()
+        {
+
+        }
+
         public int Id { get; set; }
         public int RouteId { get; set; }
         public int PersonId { get; set; }

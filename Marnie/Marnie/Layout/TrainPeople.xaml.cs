@@ -14,8 +14,11 @@ namespace Marnie.Layout
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TrainPeople : ContentPage
     {
-        public TrainPeople()
+        private List<Jorney> _jorneyList;
+
+        public TrainPeople(List<Jorney> list)
         {
+            _jorneyList = list;
             InitializeComponent();
             //GetPersonsWithRouteIdAndTime()
 
