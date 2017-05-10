@@ -42,11 +42,10 @@ namespace Marnie.Layout
 
         private async void SearchForTrainBtn_OnClicked(object sender, EventArgs e)
         {
-            string from = FromBox.Text;
-            string destination = Destination.Text;
+            string from = FromBox.Text.Trim();
+            string destination = Destination.Text.Trim();
             DateTime startTime = DatePicker.Date + TimePicker.Time;            
-            //validate info from above is usefull
-
+            
             var jorney = new Jorney();
             jorney.StartLocation = from;
             jorney.Destination = destination;
@@ -54,6 +53,10 @@ namespace Marnie.Layout
             List<Route> routeList = new List<Route>();
             var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
             var request = new RestRequest("Route", Method.GET);
+            request.AddParameter("from", from);
+            request.AddParameter("to", destination);
+            request.AddParameter("startTime", startTime);
+
             IRestResponse response = marnieClient.Execute(request);
             var num = (int)response.StatusCode;
             if (num >= 200 && num <= 299)
@@ -64,6 +67,7 @@ namespace Marnie.Layout
             else
             {
                 await DisplayAlert(response.StatusCode.ToString(), "Something went wrong", "OK");
+                return;
             }
             
             await Navigation.PushAsync(new TrainsFound(routeList, jorney));
