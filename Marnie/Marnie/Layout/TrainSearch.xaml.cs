@@ -26,9 +26,11 @@ namespace Marnie.Layout
             //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1]);
             NavigationPage.SetHasBackButton(this, false);
             if (Application.Current.Properties.ContainsKey("isLoggetIn") &&
-                (bool)Application.Current.Properties["isLoggetIn"])
+                (bool)Application.Current.Properties["isLoggetIn"] && 
+                Application.Current.Properties.ContainsKey("UserName") && 
+                !Application.Current.Properties["UserName"].Equals(""))
             {
-                LoginStatus.Text = "You are logget in";
+                LoginStatus.Text = "You are logget in as " + Application.Current.Properties["UserName"];
 
             }
             else

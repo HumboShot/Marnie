@@ -70,9 +70,20 @@ namespace Marnie
                 IdToken idToken = new IdToken();
                 idToken.id_token = Application.Current.Properties["id_token"] as string;
                 var authId = GetUserIdFromAuth(idToken);
-                //TODO make api to get person by auth id
-               // var person =  GetPersonByAuthId(authId);
-
+                
+                var person = GetPersonByAuthId(authId);
+                if (person != null)
+                {
+                    if (Application.Current.Properties.ContainsKey("UserName"))
+                    {
+                        Application.Current.Properties["UserName"] = person.Name;
+                    }
+                    else
+                    {
+                        Application.Current.Properties.Add("UserName", person.Name);
+                    }
+                    SaveChanges();
+                }
                 return true;
             }
             else
@@ -88,6 +99,23 @@ namespace Marnie
                 SaveChanges();
                 return false;
             }
+        }
+
+        private Person GetPersonByAuthId(string authId)
+        {
+            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var request = new RestRequest("Person", Method.GET);
+            request.AddParameter("authId", authId);
+
+            Person person = null;
+            IRestResponse response = marnieClient.Execute(request);
+            var num = (int)response.StatusCode;
+            if (num >= 200 && num <= 299)
+            {
+                Debug.WriteLine(response.StatusCode);
+                person = JsonConvert.DeserializeObject<Person>(response.Content);
+            }
+            return person;
         }
 
         //Save aplication properties persistent
@@ -160,12 +188,12 @@ namespace Marnie
             var client = new RestClient("https://olek.eu.auth0.com");
             var request = new RestRequest("tokeninfo", Method.POST);
 
-            
+
             var json = request.JsonSerializer.Serialize(idToken);
             request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
 
             IRestResponse response = client.Execute(request);
-            
+
             UserId userId = JsonConvert.DeserializeObject<UserId>(response.Content);
 
             Debug.WriteLine("user_id = " + userId.user_id);
