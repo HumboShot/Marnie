@@ -8,16 +8,16 @@
     <StackLayout>
         <StackLayout Padding="20,5,20,0">
             <StackLayout Padding="0,0,0,10">
-                <Label Text="Fra" FontSize="18" FontAttributes="Bold" TextColor="White"/>
-                <Entry x:Name="FromBox" TextColor="White"/>
+                <Label Text="Fra" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+                <Entry x:Name="FromBox" TextColor="Black"/>
             </StackLayout>
             <StackLayout Padding="0,0,0,10">
-                <Label Text="Til" FontSize="18" FontAttributes="Bold" TextColor="White"/>
-                <Entry x:Name="Destination" TextColor="White"/>
+                <Label Text="Til" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+                <Entry x:Name="Destination" TextColor="Black"/>
             </StackLayout>
             <StackLayout Padding="0,0,0,10">
-                <DatePicker x:Name="DatePicker" TextColor="White"/>
-                <TimePicker x:Name="TimePicker" TextColor="White"/>
+                <DatePicker x:Name="DatePicker" TextColor="Black"/>
+                <TimePicker x:Name="TimePicker" TextColor="Black"/>
             </StackLayout>
             <Button x:Name="SearchForTrainBtn" Text="Søg" Clicked="SearchForTrainBtn_OnClicked" BorderRadius="5" />
             <Button x:Name="NearestStationBtn" Text="Find nærmste station" Clicked="NearestStationBtn_OnClicked"/>

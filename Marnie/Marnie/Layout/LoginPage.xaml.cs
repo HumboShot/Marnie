@@ -33,7 +33,7 @@ namespace Marnie.Layout
 
         private void LogInBtn_OnClicked(object sender, EventArgs e)
         {        
-            if (service.Login(AppResources.Email, AppResources.Password))
+            if (service.Login(Email.Text, Password.Text))
             {
                 DisplayAlert("Login succcessfull", "", "OK");
                 Navigation.PushModalAsync(new TrainSearch());

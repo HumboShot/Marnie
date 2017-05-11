@@ -25,13 +25,11 @@ namespace Marnie.Layout
         }
 
         private async void SignUpBtn_OnClicked(object sender, EventArgs e)
-        {
-            var gender = new Picker();
-            gender.Title = AppResources.Gender;
+        {          
 
-            if (AppResources.ConfirmPassword.Equals(AppResources.Password))
+            if (ConfirmPassword.Equals(Password.Text))
             {
-                if (service.Signup(AppResources.Name, Birthdate.Date, AppResources.Picture, gender.SelectedItem.ToString(), AppResources.Email, AppResources.Password))
+                if (service.Signup(Name.Text, Birthdate.Date, Picture.Text, Gender.SelectedItem.ToString(), Email.Text, Password.Text))
                 {
                     
                     await DisplayAlert("Account created successfuly", "You are logget in", "OK");

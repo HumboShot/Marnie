@@ -6,8 +6,8 @@
 
     <StackLayout Padding = '20' Spacing = '10'>
         <Label Text="{i18n:TranslateExtension LogInLabel}" FontSize="Large" HorizontalOptions="Center"/>
-        <Entry Placeholder="{i18n:TranslateExtension Email}"/>
-        <Entry Placeholder="{i18n:TranslateExtension Password}" IsEnabled="True"/>
+        <Entry x:Name="Email"  Placeholder="{i18n:TranslateExtension Email}"/>
+        <Entry x:Name="Password" Placeholder="{i18n:TranslateExtension Password}" IsEnabled="True"/>
         <Button Text="{i18n:TranslateExtension LogInBtn}" Clicked="LogInBtn_OnClicked"/>
         <Button Text="{i18n:TranslateExtension SignUpBtn}" Clicked="SignUpBtn_OnClicked"/>
       
