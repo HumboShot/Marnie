@@ -6,12 +6,13 @@
         <ListView x:Name="PersonListByRoute" ItemSelected="OnPersonSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
+                    <ImageCell ImageSource="{Binding  Person.PicturePath}" Text ="{Binding  Person.Name}" Detail="{Binding Id}"/>
+                    <!--<ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding Name}"/>
                             <Label Text="{Binding Id}"/>
                         </StackLayout>
-                    </ViewCell>
+                    </ViewCell>-->
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

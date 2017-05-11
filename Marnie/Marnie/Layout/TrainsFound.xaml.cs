@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using Newtonsoft.Json;
+using RestSharp;
 
 namespace Marnie.Layout
 {
@@ -56,9 +58,25 @@ namespace Marnie.Layout
             //Get jorneyList from Api and if succesfull push next Page with it.
             //we send route id , statrt time and end time as parameters to TrainPeople
             
-            var trainPeoplePage = new TrainPeople(_jorney.RouteId, _jorney.StartTime, _jorney.EndTime);
+            //var trainPeoplePage = new TrainPeople(_jorney.RouteId, _jorney.StartTime, _jorney.EndTime);
+            var journeyListByRoutId = GetJourneyListDyRoutId(_jorney.RouteId, _jorney.StartTime, _jorney.EndTime);
+            var trainPeoplePage = new TrainPeople(journeyListByRoutId, _jorney);
             await Navigation.PushAsync(trainPeoplePage);
         }
+
+        private List<Jorney> GetJourneyListDyRoutId(int jorneyRouteId, DateTime jorneyStartTime, DateTime jorneyEndTime)
+        {
+            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var request = new RestRequest("Jorney", Method.GET);
+            request.AddParameter("routeId", jorneyRouteId);
+            request.AddParameter("start", jorneyStartTime);
+            request.AddParameter("stop", jorneyEndTime);
+
+            IRestResponse response = marnieClient.Execute(request);
+            var journeyList = JsonConvert.DeserializeObject<List<Jorney>>(response.Content);
+            return journeyList;
+        }
+
 
         private void notDone_Clicked(object sender, EventArgs e)
         {
