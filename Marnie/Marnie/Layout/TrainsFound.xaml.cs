@@ -52,7 +52,6 @@ namespace Marnie.Layout
             _jorney.Route = _selectedRoute;
             _jorney.RouteId = _selectedRoute.Id;
             _jorney.Status = 0;
-            //_jorney.PersonId = Need to be able to get this somewhere
             _jorney.PersonId = (int) Application.Current.Properties["PersonId"];//person id comes as the result of login
 
             //Get jorneyList from Api and if succesfull push next Page with it.
