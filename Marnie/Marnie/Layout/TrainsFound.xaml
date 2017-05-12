@@ -9,12 +9,13 @@
         <ListView x:Name="routesListView"  ItemSelected="OnRouteSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
+                    <TextCell Text ="{Binding Name}" Detail="{Binding Id}"/>
+                    <!--<ViewCell>
                         <StackLayout Orientation="Vertical">
                             <Label Text="{Binding Name}"/>
                             <Label Text="{Binding Id}"/>
                         </StackLayout>
-                    </ViewCell>
+                    </ViewCell>-->
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

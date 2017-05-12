@@ -32,7 +32,7 @@ namespace Marnie.Layout
         }
 
         private void LogInBtn_OnClicked(object sender, EventArgs e)
-        {        
+        {
             if (service.Login(Email.Text, Password.Text))
             {
                 DisplayAlert(AppResources.LogInSuc, "", "OK");
