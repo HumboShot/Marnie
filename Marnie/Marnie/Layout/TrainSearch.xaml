@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:Marnie;assembly=Marnie"
              x:Class="Marnie.Layout.TrainSearch"
              BackgroundColor="#4aa6ff"
              Title="Find dit tog">
@@ -8,19 +9,19 @@
     <StackLayout>
         <StackLayout Padding="20,5,20,0">
             <StackLayout Padding="0,0,0,10">
-                <Label Text="Fra" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="{i18n:TranslateExtension FromLabel}" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
                 <Entry x:Name="FromBox" TextColor="Black"/>
             </StackLayout>
             <StackLayout Padding="0,0,0,10">
-                <Label Text="Til" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="{i18n:TranslateExtension DestinationLabel}" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
                 <Entry x:Name="Destination" TextColor="Black"/>
             </StackLayout>
             <StackLayout Padding="0,0,0,10">
                 <DatePicker x:Name="DatePicker" TextColor="Black"/>
                 <TimePicker x:Name="TimePicker" TextColor="Black"/>
             </StackLayout>
-            <Button x:Name="SearchForTrainBtn" Text="Søg" Clicked="SearchForTrainBtn_OnClicked" BorderRadius="5" />
-            <Button x:Name="NearestStationBtn" Text="Find nærmste station" Clicked="NearestStationBtn_OnClicked"/>
+            <Button x:Name="SearchForTrainBtn" Text="{i18n:TranslateExtension SearchForTrainBtn}" Clicked="SearchForTrainBtn_OnClicked" BorderRadius="5" />
+            <Button x:Name="NearestStationBtn" Text="{i18n:TranslateExtension NearestStationBtn}" Clicked="NearestStationBtn_OnClicked"/>
         </StackLayout>
         <Button Text="TEST" Clicked="Button_OnClicked"/>
         <Label x:Name="LoginStatus" Text=""></Label>

@@ -11,6 +11,7 @@ using RestSharp;
 using Marnie.Model;
 using Newtonsoft.Json;
 using Plugin.Geolocator.Abstractions;
+using Marnie.MultilingualResources;
 
 namespace Marnie.Layout
 {
@@ -31,12 +32,12 @@ namespace Marnie.Layout
                 Application.Current.Properties.ContainsKey("UserName") && 
                 !Application.Current.Properties["UserName"].Equals(""))
             {
-                LoginStatus.Text = "You are logget in as " + Application.Current.Properties["UserName"];
+                LoginStatus.Text = AppResources.LogInStatus + Application.Current.Properties["UserName"];
 
             }
             else
             {
-                LoginStatus.Text = "You are not logget in";
+                LoginStatus.Text = AppResources.LogInStatusErr;
 
             }
         }
@@ -68,7 +69,7 @@ namespace Marnie.Layout
             }
             else
             {
-                await DisplayAlert(response.StatusCode.ToString(), "Something went wrong", "OK");
+                await DisplayAlert(response.StatusCode.ToString(), AppResources.Error, "OK");
                 return;
             }
             
@@ -108,7 +109,7 @@ namespace Marnie.Layout
             }
             else
             {
-                await DisplayAlert(response.StatusCode.ToString(), "Something went wrong", "OK");
+                await DisplayAlert(response.StatusCode.ToString(), AppResources.Error, "OK");
             }
         }
 

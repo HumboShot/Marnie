@@ -35,12 +35,12 @@ namespace Marnie.Layout
         {        
             if (service.Login(Email.Text, Password.Text))
             {
-                DisplayAlert("Login succcessfull", "", "OK");
+                DisplayAlert(AppResources.LogInSuc, "", "OK");
                 Navigation.PushModalAsync(new TrainSearch());
             }
             else
             {
-                DisplayAlert("Login failed", "Please try again or Sign Up if you don't have account", "OK");
+                DisplayAlert(AppResources.LogInFailTitle, AppResources.LogInFailText, "OK");
                 Navigation.PushModalAsync(new LoginPage());
             }
         }

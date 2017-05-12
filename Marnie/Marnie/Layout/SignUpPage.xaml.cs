@@ -20,29 +20,27 @@ namespace Marnie.Layout
         public SignUpPage()
         {
             InitializeComponent();
-
-            
         }
 
         private async void SignUpBtn_OnClicked(object sender, EventArgs e)
         {          
 
-            if (ConfirmPassword.Equals(Password.Text))
+            if (ConfirmPassword.Text.Equals(Password.Text))
             {
                 if (service.Signup(Name.Text, Birthdate.Date, Picture.Text, Gender.SelectedItem.ToString(), Email.Text, Password.Text))
                 {
-                    
-                    await DisplayAlert("Account created successfuly", "You are logget in", "OK");
+                     
+                    await DisplayAlert(AppResources.SignUpSuc, AppResources.LoggedIn, "OK");
                     await Navigation.PushModalAsync(new TrainSearch());
                 }
                 else
                 {
-                    await DisplayAlert("An Error has occured", "Please try again", "OK");
+                    await DisplayAlert(AppResources.SignUpFailTitle, AppResources.SignUpFailText, "OK");
                 }
             }
             else
             {
-                await DisplayAlert("ConfirmPasword don't match Password ", "Please try again", "Ok");
+                await DisplayAlert(AppResources.ConfirmPassFailTitle, AppResources.ConfirmPassFailText, "Ok");
             }
 
         }

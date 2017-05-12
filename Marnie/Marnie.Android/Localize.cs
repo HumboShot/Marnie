@@ -30,8 +30,7 @@ namespace Marnie.Android
 				ci = new System.Globalization.CultureInfo(netLanguage);
 			}
 			catch (CultureNotFoundException e1)
-			{
-				// iOS locale not valid .NET culture (eg. "en-ES" : English in Spain)
+			{				
 				// fallback to first characters, in this case "en"
 				try
 				{
@@ -85,9 +84,7 @@ namespace Marnie.Android
 			{
 				case "gsw":
 					netLanguage = "de-CH"; // equivalent to German (Switzerland) for this app
-					break;
-					// add more application-specific cases here (if required)
-					// ONLY use cultures that have been tested and known to work
+					break;					
 			}
 
 			Console.WriteLine(".NET Fallback Language/Locale:" + netLanguage + " (application-specific)");

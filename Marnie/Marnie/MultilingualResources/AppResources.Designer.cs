@@ -71,11 +71,38 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please try again.
+        /// </summary>
+        internal static string ConfirmPassFailText {
+            get {
+                return ResourceManager.GetString("ConfirmPassFailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ConfirmPasword doesn&apos;t match Password.
+        /// </summary>
+        internal static string ConfirmPassFailTitle {
+            get {
+                return ResourceManager.GetString("ConfirmPassFailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm password.
         /// </summary>
         internal static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To:.
+        /// </summary>
+        internal static string DestinationLabel {
+            get {
+                return ResourceManager.GetString("DestinationLabel", resourceCulture);
             }
         }
         
@@ -89,11 +116,38 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Something went wrong.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From:.
+        /// </summary>
+        internal static string FromLabel {
+            get {
+                return ResourceManager.GetString("FromLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select your gender.
         /// </summary>
         internal static string Gender {
             get {
                 return ResourceManager.GetString("Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are logged in.
+        /// </summary>
+        internal static string LoggedIn {
+            get {
+                return ResourceManager.GetString("LoggedIn", resourceCulture);
             }
         }
         
@@ -107,6 +161,24 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please try again or Sign Up if you don&apos;t have account.
+        /// </summary>
+        internal static string LogInFailText {
+            get {
+                return ResourceManager.GetString("LogInFailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login failed.
+        /// </summary>
+        internal static string LogInFailTitle {
+            get {
+                return ResourceManager.GetString("LogInFailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wellcome to Marnie .
         /// </summary>
         internal static string LogInLabel {
@@ -116,11 +188,47 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are logged in as .
+        /// </summary>
+        internal static string LogInStatus {
+            get {
+                return ResourceManager.GetString("LogInStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not logged in.
+        /// </summary>
+        internal static string LogInStatusErr {
+            get {
+                return ResourceManager.GetString("LogInStatusErr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login successful.
+        /// </summary>
+        internal static string LogInSuc {
+            get {
+                return ResourceManager.GetString("LogInSuc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your name.
         /// </summary>
         internal static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find nearest station.
+        /// </summary>
+        internal static string NearestStationBtn {
+            get {
+                return ResourceManager.GetString("NearestStationBtn", resourceCulture);
             }
         }
         
@@ -143,6 +251,15 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        internal static string SearchForTrainBtn {
+            get {
+                return ResourceManager.GetString("SearchForTrainBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign Up.
         /// </summary>
         internal static string SignUpBtn {
@@ -152,11 +269,38 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please try again.
+        /// </summary>
+        internal static string SignUpFailText {
+            get {
+                return ResourceManager.GetString("SignUpFailText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An Error has occured.
+        /// </summary>
+        internal static string SignUpFailTitle {
+            get {
+                return ResourceManager.GetString("SignUpFailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign Up to Marnie.
         /// </summary>
         internal static string SignUpLabel {
             get {
                 return ResourceManager.GetString("SignUpLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account created successfuly.
+        /// </summary>
+        internal static string SignUpSuc {
+            get {
+                return ResourceManager.GetString("SignUpSuc", resourceCulture);
             }
         }
     }
