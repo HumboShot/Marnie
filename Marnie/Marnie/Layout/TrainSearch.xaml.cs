@@ -22,7 +22,7 @@ namespace Marnie.Layout
 
         public TrainSearch()
         {
-            InitializeComponent();
+            InitializeComponent();            
             TimePicker.Time = DateTime.Now.TimeOfDay;
             //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1]);
             NavigationPage.SetHasBackButton(this, false);
@@ -45,13 +45,15 @@ namespace Marnie.Layout
         private async void SearchForTrainBtn_OnClicked(object sender, EventArgs e)
         {
             string from = FromBox.Text.Trim();
-            string destination = Destination.Text.Trim();
-            DateTime startTime = DatePicker.Date + TimePicker.Time;            
-            
+            string destination = Destination.Text.Trim();            
+            var startTime = DateTime.SpecifyKind(DatePicker.Date + TimePicker.Time, DateTimeKind.Utc);
+
             var jorney = new Jorney();
             jorney.StartLocation = from;
             jorney.Destination = destination;
-            
+            //startTime set to transfer the date to create real time when route is selected.
+            jorney.StartTime = startTime;
+
             List<Route> routeList = new List<Route>();
             var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
             var request = new RestRequest("Route", Method.GET);
@@ -64,7 +66,9 @@ namespace Marnie.Layout
             if (num >= 200 && num <= 299)
             {
                 Debug.WriteLine(response.StatusCode);
-                routeList = JsonConvert.DeserializeObject<List<Route>>(response.Content);                
+                routeList = JsonConvert.DeserializeObject<List<Route>>(response.Content, new JsonSerializerSettings{
+                        DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                });
             }
             else
             {
@@ -92,11 +96,6 @@ namespace Marnie.Layout
             var request = new RestRequest("Station", Method.GET);           
             request.AddParameter("latitude", latitude);
             request.AddParameter("longitude", longitude);
-
-            //can change and use station object to send coordinates to api?
-            //var station = new Station("Gps coordinate", _position.Latitude, _position.Longitude);
-            //var json = request.JsonSerializer.Serialize(station);
-            //request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
 
             IRestResponse response = marnieClient.Execute(request);
             var num = (int)response.StatusCode;

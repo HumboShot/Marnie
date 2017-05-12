@@ -105,7 +105,7 @@ namespace Marnie.Layout
             {
                 if (chosenJourney != null)
                     DisplayAlert("Date has been created succsessfully",
-                        "You could chat now with" + chosenJourney.Person.Name + "if you have a chat implemented", "OK");
+                        "You could chat now with " + chosenJourney.Person.Name + " if chat was implemented", "OK");
             }
             
             PersonListByRoute.SelectedItem = null;

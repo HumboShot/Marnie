@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Marnie.Model;
 using Xamarin.Forms;
@@ -10,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using RestSharp;
+using System;
 
 namespace Marnie.Layout
 {
@@ -19,12 +18,13 @@ namespace Marnie.Layout
         private ObservableCollection<Route> _obsList;
         private List<Route> _routeList = new List<Route>();
         private Route _selectedRoute;
-        private Jorney _jorney = new Jorney();        
+        private Jorney myJorney = new Jorney();
+        private string dateTimeFormat = "yyyy/MM/ddTHH:mm:ss.fff";
 
         public TrainsFound(List<Route> routeList, Jorney jorney)
         {
             _routeList = routeList;
-            _jorney = jorney;
+            myJorney = jorney;
             InitializeComponent();
             SetObservableCollection();
         }
@@ -36,50 +36,57 @@ namespace Marnie.Layout
             Debug.WriteLine("Loaded " + _obsList.Count + " Routes");
         }
 
-        private void OnRouteSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void OnRouteSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (routesListView.SelectedItem == null)
                 return;
             _selectedRoute = e.SelectedItem as Route;
             routesListView.SelectedItem = null;
+
+            await UseSelected();
         }
 
-        private async void Button_OnRouteSelected(object sender, EventArgs eventArgs)
+        private async Task UseSelected()
         {
-            _jorney.StartTime = DateTime.Today + _selectedRoute.Stops.Single(stop => stop.Station.Name.Equals(_jorney.StartLocation)).DepartureTime;
-
-            _jorney.EndTime = DateTime.Today + _selectedRoute.Stops.Single(stop => stop.Station.Name.Equals(_jorney.Destination)).ArrivalTime;
-            _jorney.Route = _selectedRoute;
-            _jorney.RouteId = _selectedRoute.Id;
-            _jorney.Status = 0;
-            _jorney.PersonId = (int) Application.Current.Properties["PersonId"];//person id comes as the result of login
-
-            //Get jorneyList from Api and if succesfull push next Page with it.
-            //we send route id , statrt time and end time as parameters to TrainPeople
+            var travelDate = myJorney.StartTime.Date.ToUniversalTime();
             
-            //var trainPeoplePage = new TrainPeople(_jorney.RouteId, _jorney.StartTime, _jorney.EndTime);
-            var journeyListByRoutId = GetJourneyListDyRoutId(_jorney.RouteId, _jorney.StartTime, _jorney.EndTime);
-            var trainPeoplePage = new TrainPeople(journeyListByRoutId, _jorney);
+            myJorney.StartTime = travelDate + _selectedRoute.Stops.Single(stop => stop.Station.Name.Equals(myJorney.StartLocation)).DepartureTime;
+            myJorney.EndTime = travelDate + _selectedRoute.Stops.Single(stop => stop.Station.Name.Equals(myJorney.Destination)).DepartureTime;
+            myJorney.Route = _selectedRoute;
+            myJorney.RouteId = _selectedRoute.Id;
+            myJorney.Status = 0;
+            myJorney.PersonId = (int) Application.Current.Properties["PersonId"];//person id comes as the result of login
+            
+
+            var journeyListByRoutId = GetJourneyListByRoutId();            
+            var trainPeoplePage = new TrainPeople(journeyListByRoutId, myJorney);
+            
+            SaveMyJorneyToDb();
             await Navigation.PushAsync(trainPeoplePage);
         }
 
-        private List<Jorney> GetJourneyListDyRoutId(int jorneyRouteId, DateTime jorneyStartTime, DateTime jorneyEndTime)
+        private List<Jorney> GetJourneyListByRoutId()
         {
             var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
             var request = new RestRequest("Jorney", Method.GET);
-            request.AddParameter("routeId", jorneyRouteId);
-            request.AddParameter("start", jorneyStartTime);
-            request.AddParameter("stop", jorneyEndTime);
+            //request.DateFormat = dateTimeFormat;            
+            request.AddParameter("routeId", myJorney.RouteId);
+            request.AddParameter("personId", myJorney.PersonId);
+            request.AddParameter("myStart", myJorney.StartTime.ToString(dateTimeFormat));
+            request.AddParameter("myStop", myJorney.EndTime.ToString(dateTimeFormat));
 
-            IRestResponse response = marnieClient.Execute(request);
+            IRestResponse response = marnieClient.Execute(request);            
             var journeyList = JsonConvert.DeserializeObject<List<Jorney>>(response.Content);
             return journeyList;
         }
+        private void SaveMyJorneyToDb()
+        {                       
+            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var request = new RestRequest("Jorney", Method.POST);            
+            var json = request.JsonSerializer.Serialize(myJorney);
 
-
-        private void notDone_Clicked(object sender, EventArgs e)
-        {
-             
+            request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+            IRestResponse response = marnieClient.Execute(request);
         }
     }
 }

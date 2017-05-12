@@ -4,8 +4,7 @@
              x:Class="Marnie.Layout.TrainsFound"
              Title="TrainsFound">
 
-    <StackLayout Padding="5" Spacing="5">
-        <Button Text="Use Selected Route" x:Name="btn_useRoute" Clicked="Button_OnRouteSelected"/>
+    <StackLayout Padding="5" Spacing="5">        
         <ListView x:Name="routesListView"  ItemSelected="OnRouteSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
