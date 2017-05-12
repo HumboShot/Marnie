@@ -117,13 +117,85 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SearchButton" xml:space="preserve">
-    <value>Search</value>
+  <data name="Birthday" xml:space="preserve">
+    <value>Din fødselsdag</value>
   </data>
-  <data name="SearchFrom" xml:space="preserve">
-    <value>To</value>
+  <data name="ConfirmPassFailText" xml:space="preserve">
+    <value>Prøv igen</value>
   </data>
-  <data name="SearchTo" xml:space="preserve">
-    <value>From</value>
+  <data name="ConfirmPassFailTitle" xml:space="preserve">
+    <value>Bekræft kodeord matcher ikke adgangskode</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Bekræft adgangskode</value>
+  </data>
+  <data name="DestinationLabel" xml:space="preserve">
+    <value>Til:</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Indtast din email</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Noget gik galt</value>
+  </data>
+  <data name="FromLabel" xml:space="preserve">
+    <value>Fra:</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Vælg dit køn</value>
+  </data>
+  <data name="LoggedIn" xml:space="preserve">
+    <value>Du er logget ind</value>
+  </data>
+  <data name="LogInBtn" xml:space="preserve">
+    <value>Log på</value>
+  </data>
+  <data name="LogInFailText" xml:space="preserve">
+    <value>Prøv igen eller Registrer dig, hvis du har ikke en konto</value>
+  </data>
+  <data name="LogInFailTitle" xml:space="preserve">
+    <value>Login mislykkedes</value>
+  </data>
+  <data name="LogInLabel" xml:space="preserve">
+    <value>Velkommen til Marnie</value>
+  </data>
+  <data name="LogInStatus" xml:space="preserve">
+    <value>Du er logget ind som </value>
+  </data>
+  <data name="LogInStatusErr" xml:space="preserve">
+    <value>Du er ikke logget ind</value>
+  </data>
+  <data name="LogInSuc" xml:space="preserve">
+    <value>Login succesfuldt</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Dit navn</value>
+  </data>
+  <data name="NearestStationBtn" xml:space="preserve">
+    <value>Find nærmste station</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Indtast din adgangskode</value>
+  </data>
+  <data name="Picture" xml:space="preserve">
+    <value>Profilbillede sti</value>
+  </data>
+  <data name="SearchForTrainBtn" xml:space="preserve">
+    <value>Søg</value>
+  </data>
+  <data name="SignUpBtn" xml:space="preserve">
+    <value>Registrer</value>
+  </data>
+  <data name="SignUpFailText" xml:space="preserve">
+    <value>Prøv igen</value>
+  </data>
+  <data name="SignUpFailTitle" xml:space="preserve">
+    <value>Der opstod en fejl</value>
+  </data>
+  <data name="SignUpLabel" xml:space="preserve">
+    <value>Registrer dig til Marnie</value>
+  </data>
+  <data name="SignUpSuc" xml:space="preserve">
+    <value>Kontoen er oprettet med succes</value>
   </data>
 </root>
