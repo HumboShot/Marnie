@@ -201,4 +201,10 @@
   <data name="Route" xml:space="preserve">
     <value>Rute</value>
   </data>
+  <data name="Arrival" xml:space="preserve">
+    <value>Ankomst: </value>
+  </data>
+  <data name="Departure" xml:space="preserve">
+    <value>Afgang: </value>
+  </data>
 </root>

@@ -10,12 +10,9 @@
                 <DataTemplate>
                     <!--<TextCell Text ="{Binding Name}" Detail="{Binding Id}"/>-->
                     <ViewCell>
-                        <StackLayout Orientation="Vertical">                            
-                                <Label Text="{Binding Name}"/>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding StopFrom.DepartureTime}"/>
-                                <Label Text="{Binding StopTo.ArrivalTime}"/>
-                            </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Time}" TextColor="Black"/>
                         </StackLayout>
                         </ViewCell>
                 </DataTemplate>

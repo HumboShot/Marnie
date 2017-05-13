@@ -37,18 +37,27 @@ namespace Marnie.Layout
         {
             foreach (var route in _routeList)
             {
-                StringBuilder rName = new StringBuilder();
-                rName.Append(AppResources.Route);
-                rName.Append(": ");
-                rName.Append(route.Name);
-                rName.Append(" ");
-                rName.Append(AppResources.FromLabel);
-                rName.Append(" ");
-                rName.Append(route.StopFrom.Station.Name);
-                rName.Append(" ");
-                rName.Append(AppResources.DestinationLabel);
-                rName.Append(" ");
-                rName.Append(route.StopTo.Station.Name);                
+                StringBuilder txt = new StringBuilder();
+                txt.Append(AppResources.Route);
+                txt.Append(": ");
+                txt.Append(route.Name);
+                txt.Append("  ");
+                txt.Append(AppResources.FromLabel);
+                txt.Append(" ");
+                txt.Append(route.StopFrom.Station.Name);
+                txt.Append(" ");
+                txt.Append(AppResources.DestinationLabel);
+                txt.Append(" ");
+                txt.Append(route.StopTo.Station.Name);
+                route.Name = txt.ToString();
+
+                txt.Clear();
+                txt.Append(AppResources.Departure);
+                txt.Append(route.StopFrom.DepartureTime.ToString());
+                txt.Append("  ");
+                txt.Append(AppResources.Arrival);
+                txt.Append(route.StopTo.ArrivalTime.ToString());
+                route.Time = txt.ToString();
             }
         }
 

@@ -72,16 +72,14 @@ namespace Marnie.Layout
             var request = new RestRequest("Route", Method.GET);
             request.AddParameter("from", from);
             request.AddParameter("to", destination);
-            request.AddParameter("startTime", startTime);
+            request.AddParameter("startTime", startTime.TimeOfDay);
 
             IRestResponse response = marnieClient.Execute(request);
             var num = (int)response.StatusCode;
             if (num >= 200 && num <= 299)
             {
                 Debug.WriteLine(response.StatusCode);
-                routeList = JsonConvert.DeserializeObject<List<Route>>(response.Content, new JsonSerializerSettings{
-                        DateTimeZoneHandling = DateTimeZoneHandling.Utc
-                });
+                routeList = JsonConvert.DeserializeObject<List<Route>>(response.Content);
             }
             else
             {
