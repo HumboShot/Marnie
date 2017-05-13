@@ -198,4 +198,7 @@
   <data name="SignUpSuc" xml:space="preserve">
     <value>Kontoen er oprettet med succes</value>
   </data>
+  <data name="Route" xml:space="preserve">
+    <value>Rute</value>
+  </data>
 </root>

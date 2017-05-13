@@ -9,6 +9,7 @@
     <StackLayout>
         <StackLayout Padding="20,5,20,0">
             <StackLayout Padding="0,0,0,10">
+                <!--<Picker Title="{i18n:TranslateExtension FromLabel}" TextColor="Black" x:Name="StationPicker"/>-->
                 <Label Text="{i18n:TranslateExtension FromLabel}" FontSize="18" FontAttributes="Bold" TextColor="Black"/>
                 <Entry x:Name="FromBox" TextColor="Black"/>
             </StackLayout>

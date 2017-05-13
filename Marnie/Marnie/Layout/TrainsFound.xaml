@@ -8,13 +8,16 @@
         <ListView x:Name="routesListView"  ItemSelected="OnRouteSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text ="{Binding Name}" Detail="{Binding Id}"/>
-                    <!--<ViewCell>
-                        <StackLayout Orientation="Vertical">
-                            <Label Text="{Binding Name}"/>
-                            <Label Text="{Binding Id}"/>
+                    <!--<TextCell Text ="{Binding Name}" Detail="{Binding Id}"/>-->
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">                            
+                                <Label Text="{Binding Name}"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding StopFrom.DepartureTime}"/>
+                                <Label Text="{Binding StopTo.ArrivalTime}"/>
+                            </StackLayout>
                         </StackLayout>
-                    </ViewCell>-->
+                        </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -16,7 +16,9 @@ namespace Marnie.Model
         }
 
         public int Id { get; set; }        
-        public string Name { get; set; }        
+        public string Name { get; set; }
+        public Stop StopFrom { get; set; }
+        public Stop StopTo { get; set; }
         public ICollection<Stop> Stops { get; set; } = new List<Stop>();
     }
 }

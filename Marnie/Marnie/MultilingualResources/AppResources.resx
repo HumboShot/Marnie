@@ -198,4 +198,7 @@
   <data name="SignUpSuc" xml:space="preserve">
     <value>Account created successfuly</value>
   </data>
+  <data name="Route" xml:space="preserve">
+    <value>Route</value>
+  </data>
 </root>

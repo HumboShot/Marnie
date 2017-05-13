@@ -9,6 +9,8 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
+using Marnie.MultilingualResources;
+using System.Text;
 
 namespace Marnie.Layout
 {
@@ -24,9 +26,30 @@ namespace Marnie.Layout
         public TrainsFound(List<Route> routeList, Jorney jorney)
         {
             _routeList = routeList;
+            changeRouteNameInRouteList();           
+            
             myJorney = jorney;
             InitializeComponent();
             SetObservableCollection();
+        }
+
+        private void changeRouteNameInRouteList()
+        {
+            foreach (var route in _routeList)
+            {
+                StringBuilder rName = new StringBuilder();
+                rName.Append(AppResources.Route);
+                rName.Append(": ");
+                rName.Append(route.Name);
+                rName.Append(" ");
+                rName.Append(AppResources.FromLabel);
+                rName.Append(" ");
+                rName.Append(route.StopFrom.Station.Name);
+                rName.Append(" ");
+                rName.Append(AppResources.DestinationLabel);
+                rName.Append(" ");
+                rName.Append(route.StopTo.Station.Name);                
+            }
         }
 
         private void SetObservableCollection()

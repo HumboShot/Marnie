@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Plugin.Geolocator;
 using Xamarin.Forms;
@@ -20,10 +18,14 @@ namespace Marnie.Layout
     public partial class TrainSearch : ContentPage
     {
         private Position _position;
-
+        private List<Station> stationList = new List<Station>();
         public TrainSearch()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            //GetStationListFromApi();
+            //StationPicker.ItemsSource = stationList;
+            //StationPicker.ItemDisplayBinding = new Binding("Name");
+                        
             TimePicker.Time = DateTime.Now.TimeOfDay;
             //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1]);
             NavigationPage.SetHasBackButton(this, false);
@@ -42,9 +44,19 @@ namespace Marnie.Layout
             }
         }
 
+        private void GetStationListFromApi()
+        {            
+            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var request = new RestRequest("Station", Method.GET);
+            
+            IRestResponse response = marnieClient.Execute(request);
+            stationList = JsonConvert.DeserializeObject<List<Station>>(response.Content);
+        }
 
         private async void SearchForTrainBtn_OnClicked(object sender, EventArgs e)
         {
+            //Station st1 = StationPicker.SelectedItem as Station;
+            //string from = st1.Name;
             string from = FromBox.Text.Trim();
             string destination = Destination.Text.Trim();            
             var startTime = DateTime.SpecifyKind(DatePicker.Date + TimePicker.Time, DateTimeKind.Utc);
@@ -105,6 +117,7 @@ namespace Marnie.Layout
                 Debug.WriteLine(response.StatusCode);
                 Station station = JsonConvert.DeserializeObject<Station>(response.Content);
                 FromBox.Text = station.Name;
+                //StationPicker.SelectedItem = station;
             }
             else
             {
