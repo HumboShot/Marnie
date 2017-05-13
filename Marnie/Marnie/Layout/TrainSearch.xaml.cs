@@ -61,11 +61,11 @@ namespace Marnie.Layout
             string destination = Destination.Text.Trim();            
             var startTime = DateTime.SpecifyKind(DatePicker.Date + TimePicker.Time, DateTimeKind.Utc);
 
-            var jorney = new Jorney();
-            jorney.StartLocation = from;
-            jorney.Destination = destination;
+            var journey = new Journey();
+            journey.StartLocation = from;
+            journey.Destination = destination;
             //startTime set to transfer the date to create real time when route is selected.
-            jorney.StartTime = startTime;
+            journey.StartTime = startTime;
 
             List<Route> routeList = new List<Route>();
             var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
@@ -87,7 +87,7 @@ namespace Marnie.Layout
                 return;
             }
             
-            await Navigation.PushAsync(new TrainsFound(routeList, jorney));
+            await Navigation.PushAsync(new TrainsFound(routeList, journey));
         }
 
         private async void Button_OnClicked(object sender, EventArgs e)

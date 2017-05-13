@@ -12,7 +12,7 @@ namespace Marnie.Model
         public DateTime Birthday { get; set; }
         public string Gender { get; set; }
         public string ProfilePicture { get; set; }        
-        public ICollection<Jorney> Jorneys { get; set; } = new List<Jorney>();        
+        public ICollection<Journey> Journeys { get; set; } = new List<Journey>();        
         public ICollection<Date> Dates { get; set; } = new List<Date>();
 
         public Person(string auth_id)

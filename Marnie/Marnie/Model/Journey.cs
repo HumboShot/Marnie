@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Marnie.Model
 {
-    public class Jorney
+    public class Journey
     {
-        public Jorney(int routeId, int personId, string startLocation, DateTime startTime, string destination, DateTime endTime, int status, Person person, Route route)
+        public Journey(int routeId, int personId, string startLocation, DateTime startTime, string destination, DateTime endTime, int status, Person person, Route route)
         {
             RouteId = routeId;
             PersonId = personId;
@@ -21,7 +21,7 @@ namespace Marnie.Model
             Route = route;
         }
 
-        public Jorney()
+        public Journey()
         {
 
         }

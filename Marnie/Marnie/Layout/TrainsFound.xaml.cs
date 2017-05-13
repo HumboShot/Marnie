@@ -20,15 +20,15 @@ namespace Marnie.Layout
         private ObservableCollection<Route> _obsList;
         private List<Route> _routeList = new List<Route>();
         private Route _selectedRoute;
-        private Jorney myJorney = new Jorney();
+        private Journey myJourney = new Journey();
         private string dateTimeFormat = "yyyy/MM/ddTHH:mm:ss.fff";
 
-        public TrainsFound(List<Route> routeList, Jorney jorney)
+        public TrainsFound(List<Route> routeList, Journey journey)
         {
             _routeList = routeList;
             changeRouteNameInRouteList();           
             
-            myJorney = jorney;
+            myJourney = journey;
             InitializeComponent();
             SetObservableCollection();
         }
@@ -80,42 +80,42 @@ namespace Marnie.Layout
 
         private async Task UseSelected()
         {
-            var travelDate = myJorney.StartTime.Date.ToUniversalTime();
+            var travelDate = myJourney.StartTime.Date.ToUniversalTime();
             
-            myJorney.StartTime = travelDate + _selectedRoute.Stops.Single(stop => stop.Station.Name.Equals(myJorney.StartLocation)).DepartureTime;
-            myJorney.EndTime = travelDate + _selectedRoute.Stops.Single(stop => stop.Station.Name.Equals(myJorney.Destination)).DepartureTime;
-            myJorney.Route = _selectedRoute;
-            myJorney.RouteId = _selectedRoute.Id;
-            myJorney.Status = 0;
-            myJorney.PersonId = (int) Application.Current.Properties["PersonId"];//person id comes as the result of login
+            myJourney.StartTime = travelDate + _selectedRoute.Stops.Single(stop => stop.Station.Name.Equals(myJourney.StartLocation)).DepartureTime;
+            myJourney.EndTime = travelDate + _selectedRoute.Stops.Single(stop => stop.Station.Name.Equals(myJourney.Destination)).DepartureTime;
+            myJourney.Route = _selectedRoute;
+            myJourney.RouteId = _selectedRoute.Id;
+            myJourney.Status = 0;
+            myJourney.PersonId = (int) Application.Current.Properties["PersonId"];//person id comes as the result of login
             
 
             var journeyListByRoutId = GetJourneyListByRoutId();            
-            var trainPeoplePage = new TrainPeople(journeyListByRoutId, myJorney);
+            var trainPeoplePage = new TrainPeople(journeyListByRoutId, myJourney);
             
-            SaveMyJorneyToDb();
+            SaveMyJourneyToDb();
             await Navigation.PushAsync(trainPeoplePage);
         }
 
-        private List<Jorney> GetJourneyListByRoutId()
+        private List<Journey> GetJourneyListByRoutId()
         {
             var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
-            var request = new RestRequest("Jorney", Method.GET);
+            var request = new RestRequest("Journey", Method.GET);
             //request.DateFormat = dateTimeFormat;            
-            request.AddParameter("routeId", myJorney.RouteId);
-            request.AddParameter("personId", myJorney.PersonId);
-            request.AddParameter("myStart", myJorney.StartTime.ToString(dateTimeFormat));
-            request.AddParameter("myStop", myJorney.EndTime.ToString(dateTimeFormat));
+            request.AddParameter("routeId", myJourney.RouteId);
+            request.AddParameter("personId", myJourney.PersonId);
+            request.AddParameter("myStart", myJourney.StartTime.ToString(dateTimeFormat));
+            request.AddParameter("myStop", myJourney.EndTime.ToString(dateTimeFormat));
 
             IRestResponse response = marnieClient.Execute(request);            
-            var journeyList = JsonConvert.DeserializeObject<List<Jorney>>(response.Content);
+            var journeyList = JsonConvert.DeserializeObject<List<Journey>>(response.Content);
             return journeyList;
         }
-        private void SaveMyJorneyToDb()
+        private void SaveMyJourneyToDb()
         {                       
             var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
-            var request = new RestRequest("Jorney", Method.POST);            
-            var json = request.JsonSerializer.Serialize(myJorney);
+            var request = new RestRequest("Journey", Method.POST);            
+            var json = request.JsonSerializer.Serialize(myJourney);
 
             request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
             IRestResponse response = marnieClient.Execute(request);
