@@ -24,6 +24,10 @@
             <Button x:Name="SearchForTrainBtn" Text="{i18n:TranslateExtension SearchForTrainBtn}" Clicked="SearchForTrainBtn_OnClicked" BorderRadius="5" />
             <Button x:Name="NearestStationBtn" Text="{i18n:TranslateExtension NearestStationBtn}" Clicked="NearestStationBtn_OnClicked"/>
         </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Button x:Name="MyJourneys" Text="{i18n:TranslateExtension JourneyList}" Clicked="MyJourneys_OnClicked"/>
+            <Button x:Name="MyDates" Text="{i18n:TranslateExtension DateList}" Clicked="MyDates_OnClicked"/>
+        </StackLayout>
         <Button Text="TEST" Clicked="Button_OnClicked"/>
         <Label x:Name="LoginStatus" Text=""></Label>
     </StackLayout>

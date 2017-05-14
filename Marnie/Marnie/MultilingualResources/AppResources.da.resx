@@ -207,4 +207,10 @@
   <data name="Departure" xml:space="preserve">
     <value>Afgang: </value>
   </data>
+  <data name="DateList" xml:space="preserve">
+    <value>Mine Dates</value>
+  </data>
+  <data name="JourneyList" xml:space="preserve">
+    <value>Mine Ture</value>
+  </data>
 </root>

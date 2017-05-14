@@ -143,5 +143,15 @@ namespace Marnie.Layout
                 Debug.WriteLine("Unable to get location, may need to increase timeout: " + ex);
             }
         }
+
+        private async void MyJourneys_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MyJourneysPage());
+        }
+
+        private async void MyDates_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MyDatesPage());
+        }
     }
 }

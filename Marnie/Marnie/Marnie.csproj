@@ -39,6 +39,18 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ILocalize.cs" />
+    <Compile Include="Layout\DateDetailPage.xaml.cs">
+      <DependentUpon>DateDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layout\JourneyDetailPage.xaml.cs">
+      <DependentUpon>JourneyDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layout\MyDatesPage.xaml.cs">
+      <DependentUpon>MyDatesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Layout\MyJourneysPage.xaml.cs">
+      <DependentUpon>MyJourneysPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Layout\TranslateExtension.cs" />
     <Compile Include="MultilingualResources\AppResources.da.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -152,6 +164,30 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Layout\SignUpPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Layout\MyDatesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Layout\MyJourneysPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Layout\DateDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Layout\JourneyDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

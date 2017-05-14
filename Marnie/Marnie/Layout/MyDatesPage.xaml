@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marnie.Layout.MyDatesPage">
+    <StackLayout Padding="5" Spacing="5">
+        <ListView x:Name="DatesListView"  ItemSelected="OnDateSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding StartTime}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding DateStartLocation}" TextColor="Black"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
