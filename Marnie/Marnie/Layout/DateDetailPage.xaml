@@ -2,4 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Marnie.Layout.DateDetailPage">
+    <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Fra : "/>
+            <Label x:Name="StartLocation"  FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            <!--<Label x:Name="StartTime" FontSize="16" FontAttributes="Bold" TextColor="Black"/>-->
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Til : "/>
+            <Label x:Name="Destination" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+            <!--<Label x:Name="StopTime" FontSize="16" FontAttributes="Bold" TextColor="Black"/>-->
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Date med : "/>
+            <Image x:Name="PersonPicture" Source="http://www.avatarsdb.com/avatars/einteins_tongue.jpg" />
+            <Label x:Name="PersonName" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+        </StackLayout>
+       
+    </StackLayout>
 </ContentPage>
