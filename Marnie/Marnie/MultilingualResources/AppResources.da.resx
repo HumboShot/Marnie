@@ -213,4 +213,13 @@
   <data name="JourneyList" xml:space="preserve">
     <value>Mine ture</value>
   </data>
+  <data name="CancelJourney" xml:space="preserve">
+    <value>Annuller rejse</value>
+  </data>
+  <data name="JourneyCancelled" xml:space="preserve">
+    <value>Rejse Annulleret</value>
+  </data>
+  <data name="PlanDates" xml:space="preserve">
+    <value>Planlæg ny date</value>
+  </data>
 </root>
