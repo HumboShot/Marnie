@@ -20,6 +20,14 @@ namespace Marnie.Layout
             InitializeComponent();
             _thisDate = selectedDate;
             SetMyDate();
+            StartLocation.Text = _thisDate.DateStartLocation;
+            //StartTime.Text = _thisDate.StartTime.ToString();
+            Destination.Text = _thisDate.DateDestination;
+            //StopTime.Text = _thisDate.EndTime.ToString();
+            //todo Set PersonPicture (from _myDate object) to be loaded from a provided path
+           // PersonPicture.Source = 
+            PersonName.Text = _myDate.Name;
+
 
 
         }
