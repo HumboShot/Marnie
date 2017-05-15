@@ -151,7 +151,7 @@
     <value>Log på</value>
   </data>
   <data name="LogInFailText" xml:space="preserve">
-    <value>Prøv igen eller Registrer dig, hvis du har ikke en konto</value>
+    <value>Prøv igen eller registrer dig, hvis du har ikke en konto</value>
   </data>
   <data name="LogInFailTitle" xml:space="preserve">
     <value>Login mislykkedes</value>
@@ -172,7 +172,7 @@
     <value>Dit navn</value>
   </data>
   <data name="NearestStationBtn" xml:space="preserve">
-    <value>Find nærmste station</value>
+    <value>Find den nærmste station</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Indtast din adgangskode</value>
@@ -193,10 +193,10 @@
     <value>Der opstod en fejl</value>
   </data>
   <data name="SignUpLabel" xml:space="preserve">
-    <value>Registrer dig til Marnie</value>
+    <value>Registrer dig</value>
   </data>
   <data name="SignUpSuc" xml:space="preserve">
-    <value>Kontoen er oprettet med succes</value>
+    <value>Kontoen blev oprettet</value>
   </data>
   <data name="Route" xml:space="preserve">
     <value>Rute</value>
@@ -208,9 +208,9 @@
     <value>Afgang: </value>
   </data>
   <data name="DateList" xml:space="preserve">
-    <value>Mine Dates</value>
+    <value>Mine dates</value>
   </data>
   <data name="JourneyList" xml:space="preserve">
-    <value>Mine Ture</value>
+    <value>Mine ture</value>
   </data>
 </root>
