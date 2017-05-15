@@ -213,4 +213,13 @@
   <data name="JourneyList" xml:space="preserve">
     <value>My Journeys</value>
   </data>
+  <data name="CancelJourney" xml:space="preserve">
+    <value>Cancel Journey</value>
+  </data>
+  <data name="JourneyCancelled" xml:space="preserve">
+    <value>Journey cancelled</value>
+  </data>
+  <data name="PlanDates" xml:space="preserve">
+    <value>Plan new date</value>
+  </data>
 </root>
