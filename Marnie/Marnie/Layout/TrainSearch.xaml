@@ -22,13 +22,13 @@
                 <TimePicker x:Name="TimePicker" TextColor="Black"/>
             </StackLayout>
             <Button x:Name="SearchForTrainBtn" Text="{i18n:TranslateExtension SearchForTrainBtn}" Clicked="SearchForTrainBtn_OnClicked" BorderRadius="5" />
-            <Button x:Name="NearestStationBtn" Text="{i18n:TranslateExtension NearestStationBtn}" Clicked="NearestStationBtn_OnClicked"/>
+            <Button x:Name="NearestStationBtn" Text="{i18n:TranslateExtension NearestStationBtn}" Clicked="NearestStationBtn_OnClicked" BorderRadius="5"/>
         </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Button x:Name="MyJourneys" Text="{i18n:TranslateExtension JourneyList}" Clicked="MyJourneys_OnClicked"/>
-            <Button x:Name="MyDates" Text="{i18n:TranslateExtension DateList}" Clicked="MyDates_OnClicked"/>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="0,0,0,10">
+            <Button x:Name="MyJourneys" Text="{i18n:TranslateExtension JourneyList}" Clicked="MyJourneys_OnClicked" BorderRadius="5"/>
+            <Button x:Name="MyDates" Text="{i18n:TranslateExtension DateList}" Clicked="MyDates_OnClicked" BorderRadius="5"/>
         </StackLayout>
-        <Button Text="TEST" Clicked="Button_OnClicked"/>
+        <Button Text="Login" Clicked="Button_OnClicked" BorderRadius="5"/>
         <Label x:Name="LoginStatus" Text=""></Label>
     </StackLayout>
 </ContentPage>

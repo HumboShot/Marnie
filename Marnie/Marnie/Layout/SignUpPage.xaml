@@ -21,7 +21,7 @@
         <Entry x:Name="Picture"  Placeholder="{i18n:TranslateExtension Picture}" Text="hej"></Entry>
         <Entry x:Name="Email" Placeholder="{i18n:TranslateExtension Email}"/>
 
-        <Entry x:Name="Password" Placeholder="{i18n:TranslateExtension Password}" IsEnabled="True"/>
+        <Entry x:Name="Password" Placeholder="{i18n:TranslateExtension Password}" IsPassword="True"/>
         <Entry x:Name="ConfirmPassword" Placeholder="{i18n:TranslateExtension ConfirmPassword}" IsPassword="True"/>
 
         <Button Text="{i18n:TranslateExtension SignUpBtn}" Clicked="SignUpBtn_OnClicked"/>
