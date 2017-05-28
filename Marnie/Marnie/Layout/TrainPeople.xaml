@@ -1,20 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:Marnie;assembly=Marnie"
+             xmlns:converters="clr-namespace:Marnie.Converters;assembly=Marnie"
              x:Class="Marnie.Layout.TrainPeople">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:AgeConverter x:Key="AgeConverter" />
+            <converters:ProfilePictureSizeConverter x:Key="PictureSizeConverter" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <StackLayout Padding="5" Spacing="5">
         <ListView x:Name="PersonListByRoute" ItemSelected="OnPersonSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ImageCell ImageSource="{Binding  Person.PicturePath}" Text ="{Binding  Person.Name}" Detail="{Binding Id}"/>
-                    <!--<ViewCell>
+                    <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Name}"/>
-                            <Label Text="{Binding Id}"/>
+                            <Image x:Name="Image" Source="{Binding  Person.ProfilePicture, Converter={StaticResource PictureSizeConverter}, ConverterParameter=s}" />
+                            <StackLayout Orientation="Vertical" >
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{i18n:TranslateExtension NameLabel}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding Person.Name}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{i18n:TranslateExtension AgeLabel}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding Person.Birthday, Converter={StaticResource AgeConverter}}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{i18n:TranslateExtension GenderLabel}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding Person.Gender}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{i18n:TranslateExtension FromLabel}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding StartLocation}" TextColor="Black"/>
+                                <Label Text="{i18n:TranslateExtension DestinationLabel}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding Destination}" TextColor="Black"/>
+                            </StackLayout>
                         </StackLayout>
-                    </ViewCell>-->
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        </StackLayout>
+    </StackLayout>
 </ContentPage>

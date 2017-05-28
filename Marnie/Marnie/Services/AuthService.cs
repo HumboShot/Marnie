@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Marnie.Layout;
 using Marnie.Model;
 using Newtonsoft.Json;
 using RestSharp;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using System.Net;
-using Android.OS;
-using Org.Apache.Http.Client.Params;
+using Marnie.MultilingualResources;
 using Debug = System.Diagnostics.Debug;
 
 namespace Marnie
@@ -21,7 +13,7 @@ namespace Marnie
 
         public bool Login(string username, string password)
         {
-            var client = new RestClient("https://olek.eu.auth0.com");
+            var client = new RestClient(AppResources.Auth0Endpoint);
             var request = new RestRequest("oauth/ro", Method.POST);
 
             request.AddParameter("client_id", "WU0DxEKuQXDpgSJ8lGmLNr1Nux2ejl1P");
@@ -109,9 +101,9 @@ namespace Marnie
             }
         }
 
-        private Person GetPersonByAuthId(string authId)
+        public Person GetPersonByAuthId(string authId)
         {
-            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
             var request = new RestRequest("Person", Method.GET);
             request.AddParameter("authId", authId);
 
@@ -131,7 +123,7 @@ namespace Marnie
         public bool Signup(string name, DateTime birthdate, string picturePath, string gender, string username, string password)
         {
             var status = false;
-            var client = new RestClient("https://olek.eu.auth0.com");
+            var client = new RestClient(AppResources.Auth0Endpoint);
             var request = new RestRequest("dbconnections/signup", Method.POST);
 
             request.AddParameter("client_id", "WU0DxEKuQXDpgSJ8lGmLNr1Nux2ejl1P");
@@ -171,7 +163,7 @@ namespace Marnie
 
         private bool SavePersonToDb(Person newPerson)
         {
-            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
             var request = new RestRequest("Person", Method.POST);
             var json = request.JsonSerializer.Serialize(newPerson);
 
@@ -185,15 +177,12 @@ namespace Marnie
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public String GetUserIdFromAuth(IdToken idToken)
         {
-            var client = new RestClient("https://olek.eu.auth0.com");
+            var client = new RestClient(AppResources.Auth0Endpoint);
             var request = new RestRequest("tokeninfo", Method.POST);
 
 
@@ -207,7 +196,6 @@ namespace Marnie
             Debug.WriteLine("user_id = " + userId.user_id);
 
             return userId.user_id.Replace("auth0|", "");
-
         }
 
 
@@ -232,8 +220,6 @@ namespace Marnie
         public class IdToken
         {
             public string id_token { get; set; }
-
         }
-
     }
 }

@@ -2,19 +2,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Marnie.Layout.TrainsFound"
+             xmlns:i18n="clr-namespace:Marnie;assembly=Marnie"
              Title="TrainsFound">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <i18n:TimeSpanConverter x:Key="timeSpanConverter" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <StackLayout Padding="5" Spacing="5">        
         <ListView x:Name="routesListView"  ItemSelected="OnRouteSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <!--<TextCell Text ="{Binding Name}" Detail="{Binding Id}"/>-->
                     <ViewCell>
-                        <StackLayout Orientation="Vertical">
-                            <Label Text="{Binding Name}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
-                            <Label Text="{Binding Time}" TextColor="Black"/>
+                        <StackLayout Orientation="Vertical" >
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{i18n:TranslateExtension FromLabel}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding StopFrom.Station.Name}" TextColor="Black"/>
+                                <Label Text="{i18n:TranslateExtension DestinationLabel}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding StopTo.Station.Name}" TextColor="Black"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{i18n:TranslateExtension Departure}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding StopFrom.DepartureTime, Converter={StaticResource timeSpanConverter}}" TextColor="Black"/>
+                                <Label Text="{i18n:TranslateExtension Arrival}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Text="{Binding StopTo.ArrivalTime, Converter={StaticResource timeSpanConverter}}" TextColor="Black"/>
+                            </StackLayout>
                         </StackLayout>
-                        </ViewCell>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

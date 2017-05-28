@@ -213,4 +213,40 @@
   <data name="JourneyList" xml:space="preserve">
     <value>My Journeys</value>
   </data>
+  <data name="Auth0Endpoint" xml:space="preserve">
+    <value>https://olek.eu.auth0.com</value>
+  </data>
+  <data name="LoginProgress" xml:space="preserve">
+    <value>Working on your login</value>
+  </data>
+  <data name="OwnApiEndpoint" xml:space="preserve">
+    <value>http://marnie-001-site1.atempurl.com/api</value>
+  </data>
+  <data name="AgeLabel" xml:space="preserve">
+    <value> Age: </value>
+  </data>
+  <data name="GenderLabel" xml:space="preserve">
+    <value> Gender: </value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Name: </value>
+  </data>
+  <data name="ImgurClientId" xml:space="preserve">
+    <value>6907d36a63c803e</value>
+  </data>
+  <data name="ImgurEndpoint" xml:space="preserve">
+    <value>https://api.imgur.com/3/</value>
+  </data>
+  <data name="PickPicture" xml:space="preserve">
+    <value>Pick profile picture from album</value>
+  </data>
+  <data name="PictureSaved" xml:space="preserve">
+    <value>Profile Picture saved</value>
+  </data>
+  <data name="DateDetail" xml:space="preserve">
+    <value>Date Detail Page</value>
+  </data>
+  <data name="TrainSearch" xml:space="preserve">
+    <value>Search for Train</value>
+  </data>
 </root>

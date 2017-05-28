@@ -10,6 +10,9 @@ using Marnie.Model;
 using Newtonsoft.Json;
 using Plugin.Geolocator.Abstractions;
 using Marnie.MultilingualResources;
+using Marnie.Services;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 
 namespace Marnie.Layout
 {
@@ -19,16 +22,25 @@ namespace Marnie.Layout
     {
         private Position _position;
         private List<Station> stationList = new List<Station>();
+        private MediaFile _mediaFile;
         public TrainSearch()
         {
             InitializeComponent();
-            //GetStationListFromApi();
-            //StationPicker.ItemsSource = stationList;
-            //StationPicker.ItemDisplayBinding = new Binding("Name");
-                        
-            TimePicker.Time = DateTime.Now.TimeOfDay;
-            //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1]);
-            NavigationPage.SetHasBackButton(this, false);
+
+          
+            //Search data for testing
+            FromBox.Text = "Aalborg";
+            Destination.Text = "Vejle";
+            DatePicker.Date = DateTime.Parse("11-05-2017");
+            TimePicker.Time = TimeSpan.Parse("09:55:00");
+            
+                //GetStationListFromApi();
+                //StationPicker.ItemsSource = stationList;
+                //StationPicker.ItemDisplayBinding = new Binding("Name");
+
+                //TimePicker.Time = DateTime.Now.TimeOfDay;
+                //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1]);
+                NavigationPage.SetHasBackButton(this, false);
             if (Application.Current.Properties.ContainsKey("isLoggetIn") &&
                 (bool)Application.Current.Properties["isLoggetIn"] && 
                 Application.Current.Properties.ContainsKey("UserName") && 
@@ -44,9 +56,15 @@ namespace Marnie.Layout
             }
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            SearchForTrainBtn.IsEnabled = true;
+        }
+
         private void GetStationListFromApi()
         {            
-            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
             var request = new RestRequest("Station", Method.GET);
             
             IRestResponse response = marnieClient.Execute(request);
@@ -55,6 +73,7 @@ namespace Marnie.Layout
 
         private async void SearchForTrainBtn_OnClicked(object sender, EventArgs e)
         {
+            SearchForTrainBtn.IsEnabled = false;
             //Station st1 = StationPicker.SelectedItem as Station;
             //string from = st1.Name;
             string from = FromBox.Text.Trim();
@@ -68,7 +87,7 @@ namespace Marnie.Layout
             journey.StartTime = startTime;
 
             List<Route> routeList = new List<Route>();
-            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
             var request = new RestRequest("Route", Method.GET);
             request.AddParameter("from", from);
             request.AddParameter("to", destination);
@@ -84,6 +103,7 @@ namespace Marnie.Layout
             else
             {
                 await DisplayAlert(response.StatusCode.ToString(), AppResources.Error, "OK");
+                SearchForTrainBtn.IsEnabled = true;
                 return;
             }
             
@@ -103,7 +123,7 @@ namespace Marnie.Layout
             string longitude = _position.Longitude.ToString();
             longitude = longitude.Replace(",", ".");
 
-            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
             var request = new RestRequest("Station", Method.GET);           
             request.AddParameter("latitude", latitude);
             request.AddParameter("longitude", longitude);
@@ -152,6 +172,28 @@ namespace Marnie.Layout
         private async void MyDates_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MyDatesPage());
+        }
+        private async void PickPictureBtn_OnClicked(object sender, EventArgs e)
+        {
+            await PickPictureAsync();
+            ImageService service = new ImageService();
+            if (service.SavePicture(_mediaFile)) 
+            {
+                await DisplayAlert("picture saved", AppResources.PictureSaved, "OK");
+            }else
+            {
+                await DisplayAlert("picture saved", AppResources.Error, "OK");
+            }
+        }
+        private async Task PickPictureAsync()
+        {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Pick Photo", ":( Pick Photo  not supported", "OK");
+                return;
+            }
+            _mediaFile = await CrossMedia.Current.PickPhotoAsync();
         }
     }
 }

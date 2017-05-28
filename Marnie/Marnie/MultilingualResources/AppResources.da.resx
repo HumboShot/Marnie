@@ -213,4 +213,22 @@
   <data name="JourneyList" xml:space="preserve">
     <value>Mine Ture</value>
   </data>
+  <data name="LoginProgress" xml:space="preserve">
+    <value>Arbejder på dit login</value>
+  </data>
+  <data name="AgeLabel" xml:space="preserve">
+    <value>Alder: </value>
+  </data>
+  <data name="GenderLabel" xml:space="preserve">
+    <value>Køn: </value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Navn: </value>
+  </data>
+  <data name="DateDetail" xml:space="preserve">
+    <value>Detaljer om din date</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Søg efter Tog</value>
+  </data>
 </root>

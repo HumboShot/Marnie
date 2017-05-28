@@ -1,5 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Marnie.Layout.DateDetailPage">
+             x:Class="Marnie.Layout.DateDetailPage"
+             xmlns:i18n="clr-namespace:Marnie;assembly=Marnie"
+             xmlns:converters="clr-namespace:Marnie.Converters;assembly=Marnie"
+             Title="{i18n:TranslateExtension DateDetail}">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:AgeConverter x:Key="AgeConverter" />
+            <converters:ProfilePictureSizeConverter x:Key="PictureSizeConverter" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{i18n:TranslateExtension NameLabel}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="Name" FontSize="16" FontAttributes="Bold" TextColor="Black" x:Name="Name"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{i18n:TranslateExtension AgeLabel}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="Age" FontSize="16" FontAttributes="Bold" TextColor="Black" x:Name="Age"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{i18n:TranslateExtension GenderLabel}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="Gender" FontSize="16" FontAttributes="Bold" TextColor="Black" x:Name="Gender"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{i18n:TranslateExtension FromLabel}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="DateStartLocation" TextColor="Black" x:Name="DateStartLocation"/>
+                <Label Text="{i18n:TranslateExtension DestinationLabel}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
+                <Label Text="DateDestination" TextColor="Black" x:Name="DateDestination"/>
+            </StackLayout>
+            <Image x:Name="Image"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

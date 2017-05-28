@@ -26,7 +26,7 @@ namespace Marnie.Layout
         public TrainsFound(List<Route> routeList, Journey journey)
         {
             _routeList = routeList;
-            changeRouteNameInRouteList();           
+            //changeRouteNameInRouteList(); changed it to work with bindings
             
             myJourney = journey;
             InitializeComponent();
@@ -99,7 +99,7 @@ namespace Marnie.Layout
 
         private List<Journey> GetJourneyListByRoutId()
         {
-            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
             var request = new RestRequest("Journey", Method.GET);
             //request.DateFormat = dateTimeFormat;            
             request.AddParameter("routeId", myJourney.RouteId);
@@ -113,7 +113,7 @@ namespace Marnie.Layout
         }
         private void SaveMyJourneyToDb()
         {                       
-            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
             var request = new RestRequest("Journey", Method.POST);            
             var json = request.JsonSerializer.Serialize(myJourney);
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Marnie.Model;
+using Marnie.MultilingualResources;
 using RestSharp;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,6 +20,12 @@ namespace Marnie.Layout
 
             InitializeComponent();
             _journeyList = journeys;
+
+            ////test data set image local
+            //foreach (Journey journey in _journeyList)
+            //{
+            //    journey.Person.ProfilePicture = "/storage/emulated/0/DCIM/100ANDRO/DSC_0008.JPG";
+            //}
             myJourney = MyJourney;
             // GetPersonsWithRouteIdAndTime(routeId, start, stop);
             SetObservableCollection();
@@ -32,7 +39,7 @@ namespace Marnie.Layout
 
         //public List<Person> GetPersonsWithRouteIdAndTime(int routeId, DateTime start, DateTime stop)
         //{
-        //    var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+        //    var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
         //    var request = new RestRequest("Person", Method.GET);
         //    request.AddParameter("routeId", routeId);
         //    request.AddParameter("start", start);
@@ -51,10 +58,6 @@ namespace Marnie.Layout
 
         private void OnPersonSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            //todo get selected person's id, your id, routeId and create Date object 
-            // set PersonId1 to your id and PersonId2 to selcted person's id;
-            //set StatusP1 to 1;
-            //set DateStatus to 0.
             var date = new Date();
 
             if (PersonListByRoute.SelectedItem == null)
@@ -104,11 +107,12 @@ namespace Marnie.Layout
             
             PersonListByRoute.SelectedItem = null;
 
+
         }
 
         private bool SaveDateToDb(Date date)
         {
-            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
             var request = new RestRequest("Date", Method.POST);
             var json = request.JsonSerializer.Serialize(date);
 

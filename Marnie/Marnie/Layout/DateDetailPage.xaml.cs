@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Marnie.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,8 +16,8 @@ namespace Marnie.Layout
             InitializeComponent();
             _thisDate = selectedDate;
             SetMyDate();
-
-
+            SetLabels();
+            
         }
         private void SetMyDate()
         {
@@ -33,6 +29,16 @@ namespace Marnie.Layout
             {
                 _myDate = _thisDate.Person1;
             }
+        }
+
+        private void SetLabels()
+        {
+            Name.Text = _myDate.Name;
+            Age.Text = ""+(DateTime.Now.Year - _myDate.Birthday.Year);
+            Gender.Text = _myDate.Gender;
+            DateStartLocation.Text = _thisDate.DateStartLocation;
+            DateDestination.Text = _thisDate.DateDestination;
+            Image.Source = _myDate.ProfilePicture;
         }
     }
 }

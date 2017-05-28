@@ -4,8 +4,8 @@
              xmlns:i18n="clr-namespace:Marnie;assembly=Marnie"
              x:Class="Marnie.Layout.TrainSearch"
              BackgroundColor="#4aa6ff"
-             Title="Find dit tog">
-
+             Title="{i18n:TranslateExtension TrainSearch}">
+<ScrollView>
     <StackLayout>
         <StackLayout Padding="20,5,20,0">
             <StackLayout Padding="0,0,0,10">
@@ -29,6 +29,8 @@
             <Button x:Name="MyDates" Text="{i18n:TranslateExtension DateList}" Clicked="MyDates_OnClicked"/>
         </StackLayout>
         <Button Text="TEST" Clicked="Button_OnClicked"/>
+        <Button Text="{i18n:TranslateExtension PickPicture}" Clicked="PickPictureBtn_OnClicked"/>
         <Label x:Name="LoginStatus" Text=""></Label>
     </StackLayout>
+</ScrollView>
 </ContentPage>

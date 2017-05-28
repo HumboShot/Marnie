@@ -8,8 +8,7 @@
         <Label Text="{i18n:TranslateExtension LogInLabel}" FontSize="Large" HorizontalOptions="Center"/>
         <Entry x:Name="Email"  Placeholder="{i18n:TranslateExtension Email}"/>
         <Entry x:Name="Password" Placeholder="{i18n:TranslateExtension Password}" IsEnabled="True"/>
-        <Button Text="{i18n:TranslateExtension LogInBtn}" Clicked="LogInBtn_OnClicked"/>
+        <Button Text="{i18n:TranslateExtension LogInBtn}" Clicked="LogInBtn_OnClicked" x:Name="LogInBtn"/>
         <Button Text="{i18n:TranslateExtension SignUpBtn}" Clicked="SignUpBtn_OnClicked"/>
-      
     </StackLayout>
 </ContentPage>

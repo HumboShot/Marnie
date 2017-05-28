@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Marnie.Model;
+using Marnie.MultilingualResources;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,7 +26,7 @@ namespace Marnie.Layout
 
         private void GetDateList()
         {
-            var marnieClient = new RestClient("http://marnie-001-site1.atempurl.com/api");
+            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
             var request = new RestRequest("Date", Method.GET);
             request.AddParameter("personId", (int)Application.Current.Properties["PersonId"]);
 

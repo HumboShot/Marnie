@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using RestSharp;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Marnie.MultilingualResources;
@@ -17,8 +11,9 @@ namespace Marnie.Layout
         private AuthService service = new AuthService();
         public LoginPage()
         {
-
             InitializeComponent();
+            Email.Text = "mm@mm.com";
+            Password.Text = "123";
         }
 
         protected override bool OnBackButtonPressed()
@@ -33,7 +28,9 @@ namespace Marnie.Layout
 
         private void LogInBtn_OnClicked(object sender, EventArgs e)
         {
-            if (service.Login(Email.Text, Password.Text))
+            LogInBtn.IsEnabled = false;
+            LogInBtn.Text = AppResources.LoginProgress;
+            if (service.Login(Email.Text.Trim(), Password.Text.Trim()))
             {
                 DisplayAlert(AppResources.LogInSuc, "", "OK");
                 Navigation.PushModalAsync(new TrainSearch());
@@ -44,8 +41,5 @@ namespace Marnie.Layout
                 Navigation.PushModalAsync(new LoginPage());
             }
         }
-        
-        
-       
     }
 }
