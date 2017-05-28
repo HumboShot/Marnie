@@ -98,6 +98,15 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel Journey.
+        /// </summary>
+        internal static string CancelJourney {
+            get {
+                return ResourceManager.GetString("CancelJourney", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please try again.
         /// </summary>
         internal static string ConfirmPassFailText {
@@ -220,6 +229,15 @@ namespace Marnie.MultilingualResources {
         internal static string ImgurEndpoint {
             get {
                 return ResourceManager.GetString("ImgurEndpoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Journeys.
+        /// </summary>
+        internal static string JourneyCancelled {
+            get {
+                return ResourceManager.GetString("JourneyCancelled", resourceCulture);
             }
         }
         

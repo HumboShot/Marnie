@@ -1,5 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:Marnie;assembly=Marnie"
              x:Class="Marnie.Layout.JourneyDetailPage">
+    <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="{i18n:TranslateExtension FromLabel}" FontSize="18" FontAttributes="Bold" TextColor="Black"></Label>
+            <Label Text="{Binding StartLocation}" FontSize="18" FontAttributes="Bold" TextColor="Black"></Label>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="{i18n:TranslateExtension Departure}" FontSize="18" FontAttributes="Bold" TextColor="Black"></Label>
+            <Label Text="{Binding StartTime}" FontSize="14" FontAttributes="Bold" TextColor="Black"></Label>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="{i18n:TranslateExtension DestinationLabel}" FontSize="18" FontAttributes="Bold" TextColor="Black"></Label>
+            <Label Text="{Binding Destination}" FontSize="18" FontAttributes="Bold" TextColor="Black"></Label>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="{i18n:TranslateExtension Arrival}" FontSize="18" FontAttributes="Bold" TextColor="Black"></Label>
+            <Label Text="{Binding EndTime}" FontSize="14" FontAttributes="Bold" TextColor="Black"></Label>
+        </StackLayout>
+        <Button Text="{i18n:TranslateExtension PlanDates}" Clicked="Button_PlanDatesOnClicked"></Button>
+        <Button Text="{i18n:TranslateExtension CancelJourney}" Clicked="Button_CancelJourneyOnClicked"></Button>
+    </StackLayout>
 </ContentPage>
