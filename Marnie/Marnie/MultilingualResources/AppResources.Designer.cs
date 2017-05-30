@@ -206,6 +206,24 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Getting Gps coordinates.
+        /// </summary>
+        internal static string Gps {
+            get {
+                return ResourceManager.GetString("Gps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error contacting the gps.
+        /// </summary>
+        internal static string GpsError {
+            get {
+                return ResourceManager.GetString("GpsError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 6907d36a63c803e.
         /// </summary>
         internal static string ImgurClientId {

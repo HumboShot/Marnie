@@ -273,4 +273,10 @@
   <data name="UsingAlbum" xml:space="preserve">
     <value>using ur Pictur album</value>
   </data>
+  <data name="Gps" xml:space="preserve">
+    <value>Getting Gps coordinates</value>
+  </data>
+  <data name="GpsError" xml:space="preserve">
+    <value>Error contacting the gps</value>
+  </data>
 </root>

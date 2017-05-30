@@ -124,6 +124,11 @@ namespace Marnie.Layout
         {
             NearestStationBtn.IsEnabled = false;
             await LocationCurrent();
+            if (_position == null)
+            {
+                await DisplayAlert(AppResources.Gps, AppResources.GpsError, "OK");
+                return;
+            }
             string latitude = _position.Latitude.ToString();
             latitude = latitude.Replace(",", ".");
             string longitude = _position.Longitude.ToString();
