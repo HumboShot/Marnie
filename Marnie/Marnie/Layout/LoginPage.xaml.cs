@@ -12,8 +12,8 @@ namespace Marnie.Layout
         public LoginPage()
         {
             InitializeComponent();
-            Email.Text = "mm@mm.com";
-            Password.Text = "123";
+            //Email.Text = "mm@mm.com";
+            //Password.Text = "123";
         }
 
         protected override bool OnBackButtonPressed()

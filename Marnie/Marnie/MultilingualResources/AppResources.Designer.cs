@@ -98,15 +98,6 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel Journey.
-        /// </summary>
-        internal static string CancelJourney {
-            get {
-                return ResourceManager.GetString("CancelJourney", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please try again.
         /// </summary>
         internal static string ConfirmPassFailText {
@@ -233,7 +224,7 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to My Journeys.
+        ///   Looks up a localized string similar to Journey cancelled.
         /// </summary>
         internal static string JourneyCancelled {
             get {
@@ -332,6 +323,15 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log out.
+        /// </summary>
+        internal static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your name.
         /// </summary>
         internal static string Name {
@@ -355,6 +355,24 @@ namespace Marnie.MultilingualResources {
         internal static string NearestStationBtn {
             get {
                 return ResourceManager.GetString("NearestStationBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are currently no others wanting a date on this train.
+        /// </summary>
+        internal static string NoOneElse {
+            get {
+                return ResourceManager.GetString("NoOneElse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Picture Selected.
+        /// </summary>
+        internal static string NoPicture {
+            get {
+                return ResourceManager.GetString("NoPicture", resourceCulture);
             }
         }
         
@@ -463,6 +481,15 @@ namespace Marnie.MultilingualResources {
         internal static string SignUpSuc {
             get {
                 return ResourceManager.GetString("SignUpSuc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other People Looking for a Date.
+        /// </summary>
+        internal static string TrainPeople {
+            get {
+                return ResourceManager.GetString("TrainPeople", resourceCulture);
             }
         }
         

@@ -11,7 +11,7 @@
                         <StackLayout Orientation="Vertical">
                             <Label Text="{Binding StartTime}" FontSize="16" FontAttributes="Bold" TextColor="Black"/>
                             <Label Text="{Binding StartLocation}" TextColor="Black"/>
-                            <Label Text="{Binding Person1.Name}" TextColor="Black"/>
+                            <Label Text="{Binding Person.Name}" TextColor="Black"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

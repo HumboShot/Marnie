@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:Marnie;assembly=Marnie"
              xmlns:converters="clr-namespace:Marnie.Converters;assembly=Marnie"
-             x:Class="Marnie.Layout.TrainPeople">
+             x:Class="Marnie.Layout.TrainPeople"
+             Title="{i18n:TranslateExtension TrainPeople}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -14,6 +15,7 @@
     </ContentPage.Resources>
 
     <StackLayout Padding="5" Spacing="5">
+        <Label x:Name="NoMatch" FontSize="16" FontAttributes="Bold" TextColor="Black" IsVisible="False" Text="{i18n:TranslateExtension NoOneElse}"/>
         <ListView x:Name="PersonListByRoute" ItemSelected="OnPersonSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>

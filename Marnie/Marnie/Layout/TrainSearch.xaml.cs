@@ -29,17 +29,11 @@ namespace Marnie.Layout
 
           
             //Search data for testing
-            FromBox.Text = "Aalborg";
-            Destination.Text = "Vejle";
-            DatePicker.Date = DateTime.Parse("11-05-2017");
-            TimePicker.Time = TimeSpan.Parse("09:55:00");
+            //FromBox.Text = "Aalborg";
+            //Destination.Text = "Vejle";
+            //DatePicker.Date = DateTime.Parse("11-05-2017");
+            //TimePicker.Time = TimeSpan.Parse("09:55:00");
             
-                //GetStationListFromApi();
-                //StationPicker.ItemsSource = stationList;
-                //StationPicker.ItemDisplayBinding = new Binding("Name");
-
-                //TimePicker.Time = DateTime.Now.TimeOfDay;
-                //this.Navigation.RemovePage(this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1]);
                 NavigationPage.SetHasBackButton(this, false);
             if (Application.Current.Properties.ContainsKey("isLoggetIn") &&
                 (bool)Application.Current.Properties["isLoggetIn"] && 
@@ -60,6 +54,7 @@ namespace Marnie.Layout
         {
             base.OnAppearing();
             SearchForTrainBtn.IsEnabled = true;
+            NearestStationBtn.IsEnabled = true;
         }
 
         private void GetStationListFromApi()
@@ -74,8 +69,6 @@ namespace Marnie.Layout
         private async void SearchForTrainBtn_OnClicked(object sender, EventArgs e)
         {
             SearchForTrainBtn.IsEnabled = false;
-            //Station st1 = StationPicker.SelectedItem as Station;
-            //string from = st1.Name;
             string from = FromBox.Text.Trim();
             string destination = Destination.Text.Trim();            
             var startTime = DateTime.SpecifyKind(DatePicker.Date + TimePicker.Time, DateTimeKind.Utc);
@@ -117,6 +110,7 @@ namespace Marnie.Layout
 
         private async void NearestStationBtn_OnClicked(object sender, EventArgs e)
         {
+            NearestStationBtn.IsEnabled = false;
             await LocationCurrent();
             string latitude = _position.Latitude.ToString();
             latitude = latitude.Replace(",", ".");
@@ -135,12 +129,12 @@ namespace Marnie.Layout
                 Debug.WriteLine(response.StatusCode);
                 Station station = JsonConvert.DeserializeObject<Station>(response.Content);
                 FromBox.Text = station.Name;
-                //StationPicker.SelectedItem = station;
             }
             else
             {
                 await DisplayAlert(response.StatusCode.ToString(), AppResources.Error, "OK");
             }
+            NearestStationBtn.IsEnabled = true;
         }
 
         private async Task LocationCurrent()
@@ -175,15 +169,26 @@ namespace Marnie.Layout
         }
         private async void PickPictureBtn_OnClicked(object sender, EventArgs e)
         {
-            await PickPictureAsync();
-            ImageService service = new ImageService();
-            if (service.SavePicture(_mediaFile)) 
+            PickPictureBtn.IsEnabled = false;
+            try
             {
-                await DisplayAlert("picture saved", AppResources.PictureSaved, "OK");
-            }else
-            {
-                await DisplayAlert("picture saved", AppResources.Error, "OK");
+                await PickPictureAsync();
+                ImageService service = new ImageService();
+                if (service.SavePicture(_mediaFile))
+                {
+                    await DisplayAlert("picture saved", AppResources.PictureSaved, "OK");
+                }
+                else
+                {
+                    await DisplayAlert("picture saved", AppResources.Error, "OK");
+                }
             }
+            catch (Exception exception)
+            {
+                await DisplayAlert("Error", AppResources.NoPicture, "OK");
+                
+            }
+            PickPictureBtn.IsEnabled = true;
         }
         private async Task PickPictureAsync()
         {

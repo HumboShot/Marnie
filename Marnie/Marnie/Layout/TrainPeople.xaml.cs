@@ -20,14 +20,12 @@ namespace Marnie.Layout
 
             InitializeComponent();
             _journeyList = journeys;
-
-            ////test data set image local
-            //foreach (Journey journey in _journeyList)
-            //{
-            //    journey.Person.ProfilePicture = "/storage/emulated/0/DCIM/100ANDRO/DSC_0008.JPG";
-            //}
+            if (_journeyList.Count == 0)
+            {
+                NoMatch.IsVisible = true;
+            }
+            
             myJourney = MyJourney;
-            // GetPersonsWithRouteIdAndTime(routeId, start, stop);
             SetObservableCollection();
 
         }
@@ -37,24 +35,6 @@ namespace Marnie.Layout
             PersonListByRoute.ItemsSource = personList;
            }
 
-        //public List<Person> GetPersonsWithRouteIdAndTime(int routeId, DateTime start, DateTime stop)
-        //{
-        //    var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
-        //    var request = new RestRequest("Person", Method.GET);
-        //    request.AddParameter("routeId", routeId);
-        //    request.AddParameter("start", start);
-        //    request.AddParameter("stop", stop);
-
-        //    IRestResponse response = marnieClient.Execute(request);
-        //    var personList = JsonConvert.DeserializeObject<PersonList>(response.Content);
-        //    return personList.persons;
-
-        //}
-
-        //private class PersonList
-        //{
-        //    public List<Person> persons { get; set; }
-        //}
 
         private void OnPersonSelected(object sender, SelectedItemChangedEventArgs e)
         {

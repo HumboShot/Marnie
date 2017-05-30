@@ -26,39 +26,10 @@ namespace Marnie.Layout
         public TrainsFound(List<Route> routeList, Journey journey)
         {
             _routeList = routeList;
-            //changeRouteNameInRouteList(); changed it to work with bindings
             
             myJourney = journey;
             InitializeComponent();
             SetObservableCollection();
-        }
-
-        private void changeRouteNameInRouteList()
-        {
-            foreach (var route in _routeList)
-            {
-                StringBuilder txt = new StringBuilder();
-                txt.Append(AppResources.Route);
-                txt.Append(": ");
-                txt.Append(route.Name);
-                txt.Append("  ");
-                txt.Append(AppResources.FromLabel);
-                txt.Append(" ");
-                txt.Append(route.StopFrom.Station.Name);
-                txt.Append(" ");
-                txt.Append(AppResources.DestinationLabel);
-                txt.Append(" ");
-                txt.Append(route.StopTo.Station.Name);
-                route.Name = txt.ToString();
-
-                txt.Clear();
-                txt.Append(AppResources.Departure);
-                txt.Append(route.StopFrom.DepartureTime.ToString());
-                txt.Append("  ");
-                txt.Append(AppResources.Arrival);
-                txt.Append(route.StopTo.ArrivalTime.ToString());
-                route.Time = txt.ToString();
-            }
         }
 
         private void SetObservableCollection()

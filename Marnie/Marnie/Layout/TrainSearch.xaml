@@ -28,8 +28,8 @@
             <Button x:Name="MyJourneys" Text="{i18n:TranslateExtension JourneyList}" Clicked="MyJourneys_OnClicked" BorderRadius="5"/>
             <Button x:Name="MyDates" Text="{i18n:TranslateExtension DateList}" Clicked="MyDates_OnClicked" BorderRadius="5"/>
         </StackLayout>
-        <Button Text="TEST" Clicked="Button_OnClicked"/>
-        <Button Text="{i18n:TranslateExtension PickPicture}" Clicked="PickPictureBtn_OnClicked"/>
+            <Button Text="{i18n:TranslateExtension Logout}" Clicked="Button_OnClicked"/>
+        <Button Text="{i18n:TranslateExtension PickPicture}" Clicked="PickPictureBtn_OnClicked" x:Name="PickPictureBtn"/>
         <Label x:Name="LoginStatus" Text=""></Label>
     </StackLayout>
 </ScrollView>

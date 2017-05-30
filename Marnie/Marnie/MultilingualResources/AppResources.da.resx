@@ -240,4 +240,16 @@
   <data name="String1" xml:space="preserve">
     <value>Søg efter Tog</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Log af</value>
+  </data>
+  <data name="NoOneElse" xml:space="preserve">
+    <value>Der er i øjeblikket ikke andre på dette tog, som leder efter en date</value>
+  </data>
+  <data name="PickPicture" xml:space="preserve">
+    <value>Vælg profil billede fra dit album</value>
+  </data>
+  <data name="TrainPeople" xml:space="preserve">
+    <value>Vælg din date</value>
+  </data>
 </root>
