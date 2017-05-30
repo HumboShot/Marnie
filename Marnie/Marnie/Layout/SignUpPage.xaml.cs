@@ -23,24 +23,33 @@ namespace Marnie.Layout
         }
 
         private async void SignUpBtn_OnClicked(object sender, EventArgs e)
-        {          
-
-            if (ConfirmPassword.Text.Equals(Password.Text))
+        {
+            if (!String.IsNullOrEmpty(Name.Text) ||! String.IsNullOrEmpty(Birthdate.Date.ToString())
+                ||! String.IsNullOrEmpty(Picture.Text) || !String.IsNullOrEmpty(Gender.SelectedItem.ToString())||
+               ! String.IsNullOrEmpty(Email.Text) || !String.IsNullOrEmpty(Password.Text))
             {
-                if (service.Signup(Name.Text, Birthdate.Date, Picture.Text, Gender.SelectedItem.ToString(), Email.Text, Password.Text))
+                if (ConfirmPassword.Text.Equals(Password.Text))
                 {
-                     
-                    await DisplayAlert(AppResources.SignUpSuc, AppResources.LoggedIn, "OK");
-                    await Navigation.PushModalAsync(new TrainSearch());
+                    if (service.Signup(Name.Text, Birthdate.Date, Picture.Text, Gender.SelectedItem.ToString(),
+                        Email.Text, Password.Text))
+                    {
+
+                        await DisplayAlert(AppResources.SignUpSuc, AppResources.LoggedIn, "OK");
+                        await Navigation.PushModalAsync(new TrainSearch());
+                    }
+                    else
+                    {
+                        await DisplayAlert(AppResources.SignUpFailTitle, AppResources.SignUpFailText, "OK");
+                    }
                 }
                 else
                 {
-                    await DisplayAlert(AppResources.SignUpFailTitle, AppResources.SignUpFailText, "OK");
+                    await DisplayAlert(AppResources.ConfirmPassFailTitle, AppResources.ConfirmPassFailText, "Ok");
                 }
             }
             else
             {
-                await DisplayAlert(AppResources.ConfirmPassFailTitle, AppResources.ConfirmPassFailText, "Ok");
+                await DisplayAlert(AppResources.Attension, AppResources.FillUpFields, "Ok");
             }
 
         }
