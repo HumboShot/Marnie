@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Java.Lang;
 using Marnie.Model;
 using Marnie.MultilingualResources;
 using RestSharp;
@@ -92,21 +93,28 @@ namespace Marnie.Layout
 
         private bool SaveDateToDb(Date date)
         {
-            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
-            var request = new RestRequest("Date", Method.POST);
-            var json = request.JsonSerializer.Serialize(date);
-
-            request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
-
-
-            IRestResponse response = marnieClient.Execute(request);
-            //get responce status code, then return true if succsessfull (between 200 and 299) else return false
-            var num = (int)response.StatusCode;
-            if (num >= 200 && num <= 299)
+            try
             {
-                return true;
+                var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
+                var request = new RestRequest("Date", Method.POST);
+                var json = request.JsonSerializer.Serialize(date);
+
+                request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+
+
+                IRestResponse response = marnieClient.Execute(request);
+                //get responce status code, then return true if succsessfull (between 200 and 299) else return false
+                var num = (int)response.StatusCode;
+                if (num >= 200 && num <= 299)
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
     }

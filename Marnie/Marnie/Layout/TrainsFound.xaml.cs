@@ -10,7 +10,6 @@ using Newtonsoft.Json;
 using RestSharp;
 using System;
 using Marnie.MultilingualResources;
-using System.Text;
 
 namespace Marnie.Layout
 {
@@ -45,8 +44,15 @@ namespace Marnie.Layout
                 return;
             _selectedRoute = e.SelectedItem as Route;
             routesListView.SelectedItem = null;
-
-            await UseSelected();
+            try
+            {
+                await UseSelected();
+            }
+            catch (Exception)
+            {
+                await DisplayAlert(AppResources.ServerConnection, AppResources.Error, "OK");
+            }
+            
         }
 
         private async Task UseSelected()
@@ -59,37 +65,58 @@ namespace Marnie.Layout
             myJourney.RouteId = _selectedRoute.Id;
             myJourney.Status = 0;
             myJourney.PersonId = (int) Application.Current.Properties["PersonId"];//person id comes as the result of login
-            
 
-            var journeyListByRoutId = GetJourneyListByRoutId();            
-            var trainPeoplePage = new TrainPeople(journeyListByRoutId, myJourney);
-            
-            SaveMyJourneyToDb();
-            await Navigation.PushAsync(trainPeoplePage);
+            try
+            {
+                var journeyListByRoutId = GetJourneyListByRoutId();
+                var trainPeoplePage = new TrainPeople(journeyListByRoutId, myJourney);
+
+                SaveMyJourneyToDb();
+                await Navigation.PushAsync(trainPeoplePage);
+            }
+            catch (Exception)
+            {
+                await DisplayAlert(AppResources.ServerConnection, AppResources.Error, "OK");
+            }
         }
 
         private List<Journey> GetJourneyListByRoutId()
         {
-            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
-            var request = new RestRequest("Journey", Method.GET);
-            //request.DateFormat = dateTimeFormat;            
-            request.AddParameter("routeId", myJourney.RouteId);
-            request.AddParameter("personId", myJourney.PersonId);
-            request.AddParameter("myStart", myJourney.StartTime.ToString(dateTimeFormat));
-            request.AddParameter("myStop", myJourney.EndTime.ToString(dateTimeFormat));
+            try
+            {
+                var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
+                var request = new RestRequest("Journey", Method.GET);
+                //request.DateFormat = dateTimeFormat;            
+                request.AddParameter("routeId", myJourney.RouteId);
+                request.AddParameter("personId", myJourney.PersonId);
+                request.AddParameter("myStart", myJourney.StartTime.ToString(dateTimeFormat));
+                request.AddParameter("myStop", myJourney.EndTime.ToString(dateTimeFormat));
 
-            IRestResponse response = marnieClient.Execute(request);            
-            var journeyList = JsonConvert.DeserializeObject<List<Journey>>(response.Content);
-            return journeyList;
+                IRestResponse response = marnieClient.Execute(request);
+                var journeyList = JsonConvert.DeserializeObject<List<Journey>>(response.Content);
+                return journeyList;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
         private void SaveMyJourneyToDb()
-        {                       
-            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
-            var request = new RestRequest("Journey", Method.POST);            
-            var json = request.JsonSerializer.Serialize(myJourney);
+        {
+            try
+            {
+                var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
+                var request = new RestRequest("Journey", Method.POST);
+                var json = request.JsonSerializer.Serialize(myJourney);
 
-            request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
-            IRestResponse response = marnieClient.Execute(request);
+                request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+                IRestResponse response = marnieClient.Execute(request);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }                    
+            
         }
     }
 }

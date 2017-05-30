@@ -15,38 +15,53 @@ namespace Marnie.Services
     {
         public bool UpdatePerson(Person newPerson)
         {
-            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
-            var request = new RestRequest("Person", Method.PUT);
-            var json = request.JsonSerializer.Serialize(newPerson);
-
-            request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
-
-
-            IRestResponse response = marnieClient.Execute(request);
-            //get responce status code, then return true if succsessfull (between 200 and 299) else return false
-            var num = (int)response.StatusCode;
-            if (num >= 200 && num <= 299)
+            try
             {
-                return true;
+                var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
+                var request = new RestRequest("Person", Method.PUT);
+                var json = request.JsonSerializer.Serialize(newPerson);
+
+                request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+
+
+                IRestResponse response = marnieClient.Execute(request);
+                //get responce status code, then return true if succsessfull (between 200 and 299) else return false
+                var num = (int)response.StatusCode;
+                if (num >= 200 && num <= 299)
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public Person GetPersonById(int id)
         {
-            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
-            var request = new RestRequest("Person", Method.GET);
-            request.AddParameter("Id", id);
-
-            Person person = null;
-            IRestResponse response = marnieClient.Execute(request);
-            var num = (int)response.StatusCode;
-            if (num >= 200 && num <= 299)
+            try
             {
-                Debug.WriteLine(response.StatusCode);
-                person = JsonConvert.DeserializeObject<Person>(response.Content);
+                var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
+                var request = new RestRequest("Person", Method.GET);
+                request.AddParameter("Id", id);
+
+                Person person = null;
+                IRestResponse response = marnieClient.Execute(request);
+                var num = (int)response.StatusCode;
+                if (num >= 200 && num <= 299)
+                {
+                    Debug.WriteLine(response.StatusCode);
+                    person = JsonConvert.DeserializeObject<Person>(response.Content);
+                }
+                return person;
             }
-            return person;
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
     }
 }

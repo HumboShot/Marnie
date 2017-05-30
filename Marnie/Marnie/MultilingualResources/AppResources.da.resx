@@ -252,4 +252,10 @@
   <data name="TrainPeople" xml:space="preserve">
     <value>Vælg din date</value>
   </data>
+  <data name="PlsFill" xml:space="preserve">
+    <value>udfyld venlist </value>
+  </data>
+  <data name="ServerConnection" xml:space="preserve">
+    <value>Kontakter serveren</value>
+  </data>
 </root>

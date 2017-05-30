@@ -422,6 +422,15 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please fill .
+        /// </summary>
+        internal static string PlsFill {
+            get {
+                return ResourceManager.GetString("PlsFill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Route.
         /// </summary>
         internal static string Route {
@@ -436,6 +445,15 @@ namespace Marnie.MultilingualResources {
         internal static string SearchForTrainBtn {
             get {
                 return ResourceManager.GetString("SearchForTrainBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calling the server.
+        /// </summary>
+        internal static string ServerConnection {
+            get {
+                return ResourceManager.GetString("ServerConnection", resourceCulture);
             }
         }
         
@@ -499,6 +517,15 @@ namespace Marnie.MultilingualResources {
         internal static string TrainSearch {
             get {
                 return ResourceManager.GetString("TrainSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using ur Pictur album.
+        /// </summary>
+        internal static string UsingAlbum {
+            get {
+                return ResourceManager.GetString("UsingAlbum", resourceCulture);
             }
         }
     }

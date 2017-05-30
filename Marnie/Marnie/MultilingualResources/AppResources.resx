@@ -264,4 +264,13 @@
   <data name="TrainPeople" xml:space="preserve">
     <value>Other People Looking for a Date</value>
   </data>
+  <data name="PlsFill" xml:space="preserve">
+    <value>Please fill </value>
+  </data>
+  <data name="ServerConnection" xml:space="preserve">
+    <value>Calling the server</value>
+  </data>
+  <data name="UsingAlbum" xml:space="preserve">
+    <value>using ur Pictur album</value>
+  </data>
 </root>

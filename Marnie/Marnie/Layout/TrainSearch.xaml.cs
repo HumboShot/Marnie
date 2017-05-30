@@ -32,7 +32,7 @@ namespace Marnie.Layout
             //FromBox.Text = "Aalborg";
             //Destination.Text = "Vejle";
             //DatePicker.Date = DateTime.Parse("11-05-2017");
-            //TimePicker.Time = TimeSpan.Parse("09:55:00");
+            TimePicker.Time = DateTime.Now.TimeOfDay;
             
                 NavigationPage.SetHasBackButton(this, false);
             if (Application.Current.Properties.ContainsKey("isLoggetIn") &&
@@ -57,47 +57,59 @@ namespace Marnie.Layout
             NearestStationBtn.IsEnabled = true;
         }
 
-        private void GetStationListFromApi()
-        {            
-            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
-            var request = new RestRequest("Station", Method.GET);
-            
-            IRestResponse response = marnieClient.Execute(request);
-            stationList = JsonConvert.DeserializeObject<List<Station>>(response.Content);
-        }
-
         private async void SearchForTrainBtn_OnClicked(object sender, EventArgs e)
         {
-            SearchForTrainBtn.IsEnabled = false;
+            
+             
+            if (String.IsNullOrEmpty(FromBox.Text))
+            {
+                await DisplayAlert(AppResources.PlsFill, AppResources.PlsFill + AppResources.FromLabel, "OK");
+                return;
+            }
             string from = FromBox.Text.Trim();
+
+            if (String.IsNullOrEmpty(Destination.Text))
+            {
+                await DisplayAlert(AppResources.PlsFill, AppResources.PlsFill + AppResources.DestinationLabel, "OK");
+                return;
+            }
             string destination = Destination.Text.Trim();            
             var startTime = DateTime.SpecifyKind(DatePicker.Date + TimePicker.Time, DateTimeKind.Utc);
+
+            SearchForTrainBtn.IsEnabled = false;
 
             var journey = new Journey();
             journey.StartLocation = from;
             journey.Destination = destination;
             //startTime set to transfer the date to create real time when route is selected.
             journey.StartTime = startTime;
-
             List<Route> routeList = new List<Route>();
-            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
-            var request = new RestRequest("Route", Method.GET);
-            request.AddParameter("from", from);
-            request.AddParameter("to", destination);
-            request.AddParameter("startTime", startTime.TimeOfDay);
 
-            IRestResponse response = marnieClient.Execute(request);
-            var num = (int)response.StatusCode;
-            if (num >= 200 && num <= 299)
+            try
             {
-                Debug.WriteLine(response.StatusCode);
-                routeList = JsonConvert.DeserializeObject<List<Route>>(response.Content);
+                var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
+                var request = new RestRequest("Route", Method.GET);
+                request.AddParameter("from", from);
+                request.AddParameter("to", destination);
+                request.AddParameter("startTime", startTime.TimeOfDay);
+
+                IRestResponse response = marnieClient.Execute(request);
+                var num = (int)response.StatusCode;
+                if (num >= 200 && num <= 299)
+                {
+                    Debug.WriteLine(response.StatusCode);
+                    routeList = JsonConvert.DeserializeObject<List<Route>>(response.Content);
+                }
+                else
+                {
+                    await DisplayAlert(response.StatusCode.ToString(), AppResources.Error, "OK");
+                    SearchForTrainBtn.IsEnabled = true;
+                    return;
+                }
             }
-            else
+            catch (Exception)
             {
-                await DisplayAlert(response.StatusCode.ToString(), AppResources.Error, "OK");
-                SearchForTrainBtn.IsEnabled = true;
-                return;
+                await DisplayAlert(AppResources.ServerConnection, AppResources.Error, "OK");
             }
             
             await Navigation.PushAsync(new TrainsFound(routeList, journey));
@@ -117,23 +129,31 @@ namespace Marnie.Layout
             string longitude = _position.Longitude.ToString();
             longitude = longitude.Replace(",", ".");
 
-            var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
-            var request = new RestRequest("Station", Method.GET);           
-            request.AddParameter("latitude", latitude);
-            request.AddParameter("longitude", longitude);
+            try
+            {
+                var marnieClient = new RestClient(AppResources.OwnApiEndpoint);
+                var request = new RestRequest("Station", Method.GET);
+                request.AddParameter("latitude", latitude);
+                request.AddParameter("longitude", longitude);
 
-            IRestResponse response = marnieClient.Execute(request);
-            var num = (int)response.StatusCode;
-            if (num >= 200 && num <= 299)
-            {
-                Debug.WriteLine(response.StatusCode);
-                Station station = JsonConvert.DeserializeObject<Station>(response.Content);
-                FromBox.Text = station.Name;
+                IRestResponse response = marnieClient.Execute(request);
+                var num = (int)response.StatusCode;
+                if (num >= 200 && num <= 299)
+                {
+                    Debug.WriteLine(response.StatusCode);
+                    Station station = JsonConvert.DeserializeObject<Station>(response.Content);
+                    FromBox.Text = station.Name;
+                }
+                else
+                {
+                    await DisplayAlert(response.StatusCode.ToString(), AppResources.Error, "OK");
+                }
             }
-            else
+            catch (Exception )
             {
-                await DisplayAlert(response.StatusCode.ToString(), AppResources.Error, "OK");
+                await DisplayAlert(AppResources.ServerConnection, AppResources.Error, "OK");
             }
+           
             NearestStationBtn.IsEnabled = true;
         }
 
@@ -183,7 +203,7 @@ namespace Marnie.Layout
                     await DisplayAlert("picture saved", AppResources.Error, "OK");
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 await DisplayAlert("Error", AppResources.NoPicture, "OK");
                 
@@ -192,13 +212,20 @@ namespace Marnie.Layout
         }
         private async Task PickPictureAsync()
         {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsPickPhotoSupported)
+            try
             {
-                await DisplayAlert("Pick Photo", ":( Pick Photo  not supported", "OK");
-                return;
+                await CrossMedia.Current.Initialize();
+                if (!CrossMedia.Current.IsPickPhotoSupported)
+                {
+                    await DisplayAlert("Pick Photo", ":( Pick Photo  not supported", "OK");
+                    return;
+                }
+                _mediaFile = await CrossMedia.Current.PickPhotoAsync();
             }
-            _mediaFile = await CrossMedia.Current.PickPhotoAsync();
+            catch (Exception)
+            {
+                await DisplayAlert(AppResources.UsingAlbum, AppResources.Error, "OK");
+            }
         }
     }
 }
