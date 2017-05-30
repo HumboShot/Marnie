@@ -24,9 +24,9 @@ namespace Marnie.Layout
 
         private async void SignUpBtn_OnClicked(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(Name.Text) ||! String.IsNullOrEmpty(Birthdate.Date.ToString())
-                ||! String.IsNullOrEmpty(Picture.Text) || !String.IsNullOrEmpty(Gender.SelectedItem.ToString())||
-               ! String.IsNullOrEmpty(Email.Text) || !String.IsNullOrEmpty(Password.Text))
+            if (!string.IsNullOrEmpty(Name.Text) && !String.IsNullOrEmpty(Birthdate.Date.ToString())
+                && !String.IsNullOrEmpty(Picture.Text) && !String.IsNullOrEmpty(Gender.SelectedItem.ToString())&&
+               !String.IsNullOrEmpty(Email.Text) && !String.IsNullOrEmpty(Password.Text))
             {
                 if (ConfirmPassword.Text.Equals(Password.Text))
                 {
