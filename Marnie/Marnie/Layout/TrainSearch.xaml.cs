@@ -127,6 +127,7 @@ namespace Marnie.Layout
             if (_position == null)
             {
                 await DisplayAlert(AppResources.Gps, AppResources.GpsError, "OK");
+                NearestStationBtn.IsEnabled = true;
                 return;
             }
             string latitude = _position.Latitude.ToString();
