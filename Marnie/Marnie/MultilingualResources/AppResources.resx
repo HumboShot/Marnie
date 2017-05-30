@@ -264,4 +264,10 @@
   <data name="TrainPeople" xml:space="preserve">
     <value>Other People Looking for a Date</value>
   </data>
+  <data name="Attension" xml:space="preserve">
+    <value>Attension</value>
+  </data>
+  <data name="FillUpFields" xml:space="preserve">
+    <value>Please fill up all the fields</value>
+  </data>
 </root>

@@ -80,6 +80,15 @@ namespace Marnie.MultilingualResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attension.
+        /// </summary>
+        internal static string Attension {
+            get {
+                return ResourceManager.GetString("Attension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://olek.eu.auth0.com.
         /// </summary>
         internal static string Auth0Endpoint {
@@ -175,6 +184,15 @@ namespace Marnie.MultilingualResources {
         internal static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fill up all the fields.
+        /// </summary>
+        internal static string FillUpFields {
+            get {
+                return ResourceManager.GetString("FillUpFields", resourceCulture);
             }
         }
         

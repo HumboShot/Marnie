@@ -18,7 +18,7 @@
                 <x:String>Other</x:String>
             </Picker.Items>
         </Picker>
-        <Entry x:Name="Picture"  Placeholder="{i18n:TranslateExtension Picture}" Text="hej"></Entry>
+        <Entry x:Name="Picture"  Placeholder="{i18n:TranslateExtension Picture}" ></Entry>
         <Entry x:Name="Email" Placeholder="{i18n:TranslateExtension Email}"/>
 
         <Entry x:Name="Password" Placeholder="{i18n:TranslateExtension Password}" IsPassword="True"/>
